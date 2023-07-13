@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/form.css" />
+    <title>Vay Online</title>
+    <script src="js/form.js"></script>
+
+</head>
+
+<body>
+    <div class="contain-header">
+        <div class="header">
+            <div class="logo">
+                <img src="img/logo.png">
+            </div>
+            <div class="headertext"> ĐĂNG KÝ TRỰC TUYẾN</div>
+            <div class="tabtext"> Trang chủ</div>
+            <div class="tabtext"> Ngân hàng điện tử</div>
+            <div class="tabtext"> Vay online</div>
+            <div class="tabtext"> Mua bán ngoại tệ</div>
+            <div class="tabtext"> Thẻ</div>
+            <div class="tabtext"> Sản phẩm khác</div>
+        </div>
+        <div class="bg-text">Vay Online</div>
+        <div class="bg-text-2">Thu tục nhanh chóng - Tiện lợi</div>
+    </div>
+    <div class="contain-form">
+        <div id="myForm" class="form-group">
+            <h1 class="title-form">FORM ĐĂNG KÝ</h1>
+
+
+            <div class="col">
+                <div class="num">1</div>
+                <diV class="col-txt">Thông tin cá nhân :</diV>
+            </div>
+            <div class="canhan">
+                <div class="title-lable">
+                    <h1>Họ và tên:</h1>
+                    <h1>CMND:</h1>
+                    <h1 style="margin-bottom: 5.5vw">Địa chỉ:</h1>
+                    <h1>Số điện thoại:</h1>
+                    <h1>Email:</h1>
+                    <h1>Nghề nghiệp:</h1>
+                </div>
+                <div class="input-form">
+                    <input type="text" id="hoten" required onblur="normalizeName()"><br>
+
+
+                    <input type="text" id="cmnd" required><br>
+                    <label for="tinhthanh">Tỉnh thành:</label>
+                    
+                    <select style="margin-bottom: 1vw;" id="tinhthanh" onchange="updateQuanHuyenOptions()">
+                        <option value="">Chọn tỉnh thành</option>
+                        
+                        <!-- Thêm các tùy chọn khác -->
+                    </select>
+                    <br>
+                    <label for="quanhuyen">Quận huyện:</label>
+                    <select style="margin-bottom: 1vw;" id="quanhuyen">
+                        <option value="">Chọn quận huyện</option>
+                    </select>
+
+
+
+                    <input type="text" id="diachi" required><br>
+
+
+                    <input type="text" id="tel" required><br>
+
+
+                    <input type="text" id="email" required><br>
+
+
+
+                    <select style="margin-bottom: 1vw;" id="nghenghiep">
+                        <option value="nghe1">Bác Sĩ</option>
+                        <option value="nghe2">Lập trình viên</option>
+                        <option value="nghe3">Kinh doanh</option>
+                        <option value="nghe4">Kỹ sư</option>
+                        <option value="nghe5">Nông dân</option>
+
+                        <option value="nghe6">Tài xế</option>
+                        <option value="nghe7">Nhân viên nhân hàng</option>
+                        <option value="nghe8">Phóng viên</option>
+                        <!-- Thêm các tùy chọn khác -->
+                    </select>
+                </div>
+            </div>
+
+
+            <label for="thunhap">Thu nhập:</label>
+            <select style="margin-left:3.2vw" id="thunhap" required>
+                <option value="option1">Dưới 3 triệu</option>
+                <option value="option2">Từ 3 đến 5 triệu</option>
+                <option value="option3">Từ 5 đến 10 triệu</option>
+                <option value="option4">Từ 10 đến 20 triệu</option>
+                <option value="option5">Trên 20 triệu</option>
+                <!-- Add more options as needed -->
+            </select><br>
+            <div class="col">
+                <div class="num">2</div>
+                <diV class="col-txt">Thông tin đăng ký dịch vụ : </diV>
+            </div>
+            <label for="sanphamchovay">Sản phẩm vay:</label>
+            <select style="    margin-left: 0.8vw; margin-bottom: 1vw;" id="sanphamchovay" required>
+                <option value="option1">Cho vay nhu cầu nhà ở</option>
+                <option value="option2">Cho vay nhu cầu mua xe</option>
+
+                <!-- Add more options as needed -->
+            </select><br>
+            <label for="tienvay">Tiền vay:</label>
+            <input style=" margin-left:3.1vw;" type="text" id="tienvay" required><br>
+            <div class="col">
+                <div class="num">3</div>
+                <diV class="col-txt">Thông tin khác :</diV>
+            </div>
+            <label for="chinhanh">Chi nhánh:</label>
+
+            <select style="margin-left: 2.6vw; margin-bottom: 1vw;" id="chinhanh" required>
+                <option value="option1">Chi nhánh Hà Nội</option>
+                <option value="option2">Chi nhánh Hồ Chí Minh</option>
+                <option value="option3">Chi nhánh Hải Phòng</option>
+                <!-- Add more options as needed -->
+            </select><br>
+
+            <label for="kenhvay">Kênh vay:</label>
+
+            <select style="margin-left:3.04vw;" id="kenhvay" required>
+                <option value="option1">Internet</option>
+                <option value="option2">Báo</option>
+                <option value="option3">Email</option>
+                <!-- Add more options as needed -->
+            </select><br>
+            <label for="agreeCheckbox">
+                <input style="width: 1vw; height: 0.7vw;;" type="checkbox" id="agreeCheckbox" required>
+                Tôi đồng ý với các
+                <a
+                    href="https://bidv.com.vn/wps/wcm/connect/0cacdd82-b3ee-4489-835d-0aa38a304099/Ban_dieu_kien_dieu_khoan+the+GNQTDN_Final.pdf?MOD=AJPERES&CVID=n46gujc">điều
+                    khoản của BIDV</a>
+            </label>
+            <br>
+            <button onclick="addClient()">Gửi đăng ký</button>
+            <span id="error-message" style="color: red;"></span>
+
+        </div>
+    </div>
+</body>
+
+</html>

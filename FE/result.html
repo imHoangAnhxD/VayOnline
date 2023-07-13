@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client Information</title>
+    <script>
+        function getClient() {
+            var id = document.getElementById("CMND").value;
+            var xhr = new XMLHttpRequest();
+            
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var client = JSON.parse(xhr.responseText);
+                    updateClientInfo(client);
+                }
+            };
+            
+            xhr.open("GET", "http://localhost:8080/client/" + id, true);
+            xhr.send();
+        }
+        
+        function updateClientInfo(client) {
+            document.getElementById("id").textContent = client.id;
+            document.getElementById("hoten").textContent = client.hoten;
+            document.getElementById("cmnd").textContent = client.cmnd;
+            document.getElementById("diachi").textContent = client.diachi;
+            document.getElementById("tel").textContent = client.tel;
+            document.getElementById("email").textContent = client.email;
+            document.getElementById("nghenghiep").textContent = client.nghenghiep;
+            document.getElementById("thunhap").textContent = client.thunhap;
+            document.getElementById("sanphamchovay").textContent = client.sanphamchovay;
+            document.getElementById("tienvay").textContent = client.tienvay;
+            document.getElementById("chinhanh").textContent = client.chinhanh;
+            document.getElementById("kenhvay").textContent = client.kenhvay;
+        }
+    </script>
+</head>
+<body>
+    <label for="CMND">Client CMND:</label>
+    <input type="text" id="CMND">
+    <button onclick="getClient()">Get Client</button>
+    
+    <h1>Client Information</h1>
+    <ul>
+        <li><strong>ID:</strong> <span id="id"></span></li>
+        <li><strong>Full Name:</strong> <span id="hoten"></span></li>
+        <li><strong>CMND:</strong> <span id="cmnd"></span></li>
+        <li><strong>Address:</strong> <span id="diachi"></span></li>
+        <li><strong>Telephone:</strong> <span id="tel"></span></li>
+        <li><strong>Email:</strong> <span id="email"></span></li>
+        <li><strong>Occupation:</strong> <span id="nghenghiep"></span></li>
+        <li><strong>Income:</strong> <span id="thunhap"></span></li>
+        <li><strong>Loan Product:</strong> <span id="sanphamchovay"></span></li>
+        <li><strong>Loan Amount:</strong> <span id="tienvay"></span></li>
+        <li><strong>Branch:</strong> <span id="chinhanh"></span></li>
+        <li><strong>Loan Channel:</strong> <span id="kenhvay"></span></li>
+    </ul>
+</body>
+</html>

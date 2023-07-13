@@ -1,0 +1,136 @@
+.header{
+    width: 95%;
+    margin: auto;
+    margin-top:1vw;
+    margin-bottom: 1vw;
+    background-color: white;
+    display: flex;
+    border: solid 1px gray;
+    
+    border-radius:10px;
+    
+   
+}
+.contain-header{
+  padding: 0.1vw;
+    width: 100%;
+    background-image: url(../img/Grandsales_comp.jpg);
+    background-size: cover;
+    padding-bottom: 27vw;
+   
+}
+.logo img{
+    width: 10vw;
+    margin-left: 1vw;
+    margin-top: 0.6vw;
+
+}
+.headertext{
+    color: #00524e;
+    font-size: 1.5vw;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 1.5vw;
+    font-weight: 800;
+    margin-left: 2vw;
+}
+.tabtext{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 2vw;
+    font-weight: bold;
+    font-size:1vw;
+   
+    
+}
+.tabtext:hover{
+   cursor: pointer;
+   opacity: 0.9;
+   
+   background-color:whitesmoke;
+    
+}
+.bg-text{
+    font-size: 4vw;
+    font-weight: bold;
+    position: absolute;
+    margin-top: 4vw;
+    margin-left: 8vw;
+    color: white;
+}
+.bg-text-2{
+    font-size: 2vw;
+    font-weight: bold;
+    position: absolute;
+    margin-top: 10vw;
+    margin-left: 8vw;
+    color: white;
+}
+.contain-form{
+    padding:5vw;
+    background-color:#f7f9fb;
+}
+.form-group{
+    background-color: white;
+    display:block;
+    margin:auto;
+    width: 50%;
+    padding-left: 20vw;
+    padding-right: 20vw;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+}
+.title-form{
+    text-align: center;
+    font-size: 3vw;
+}
+.col{
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    display: flex;
+}
+.num{
+    padding-left:1vw ;
+    padding-top: 0.5vw;
+    padding-bottom: 0.5vw;
+    padding-right: 1vw;
+    background-color:darkgrey ;
+    border-radius: 10px;
+    font-size: 1.5vw;
+    font-weight: bold;
+}
+.col-txt{
+    font-size: 2vw;
+    margin-left: 1vw;
+}
+.form-group label{
+    font-size: 1vw;
+    font-weight: bold;
+    margin-bottom: 1vw;
+}
+.form-group input{
+    margin-bottom: 1vw;
+    width: 35.5vw;
+    height: 1.5vw;
+}
+.canhan{
+    display: flex;
+}
+.title-lable{
+    width: 40%;
+    margin-top:-0.4vw;
+    margin-right: 1vw;
+}
+.title-lable h1{
+    font-size: 1vw;
+    margin-bottom: 1.9vw;
+}
+#agreeCheckbox{
+    margin-top: 1vw;
+}
+.form-group button{
+    padding: 1vw;
+    font-size: 1.5vw;
+    margin-left: 16vw;
+    background-color: #00524e;
+    color: white;
+    margin-top: 2vw;
+}
