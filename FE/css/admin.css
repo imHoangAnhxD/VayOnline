@@ -7,9 +7,13 @@ th, td {
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
+h1{
+    text-align: center;
+    font-size: 2vw;
+}
 .btn-container {
     display: flex;
-    justify-content: center;
+    
     align-items: center;
 }
 .btn-container button {
@@ -19,9 +23,12 @@ th, td {
     display: flex;
 }
 .btn{
-    width: 2vw;
-    height: 1vw;
+    width: 100%;
+   font-size: 2vw;
+   font-weight: bold;
+    text-align: center;
     background-color: gray;
+    padding: 1vw;
 }
 .btn:hover{
     background-color:red;
