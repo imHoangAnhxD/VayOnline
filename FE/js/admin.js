@@ -392,8 +392,147 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
+  document.addEventListener('DOMContentLoaded', function() {
+    var addThunhap = document.getElementById("add-thunhap");
+    addThunhap.addEventListener('click', function() {
+      var thunhapValue = document.getElementById('thunhap').value;
   
+      // Tạo một đối tượng JSON chứa dữ liệu nghề nghiệp
+      var thunhapData = {
+        value: thunhapValue
+      };
+  
+      // Gửi yêu cầu HTTP POST đến API
+      fetch('http://localhost:8080/thunhap/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(thunhapData)
+      })
+      .then(function(response) {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error('Thêm thu nhập thất bại');
+        }
+      })
+      .then(function(data) {
+        console.log(data); // Log thông báo từ API (nghenghiep added successfully)
+        // Làm mới trang
+        location.reload(); // Tải lại trang
+      })
+      .catch(function(error) {
+        console.error(error); // Log lỗi nếu có
+      });
+    });
+  });
 
+  document.addEventListener('DOMContentLoaded', function() {
+    var addSanphamvay = document.getElementById("add-sanphamvay");
+    addSanphamvay.addEventListener('click', function() {
+      var sanphamvayValue = document.getElementById('sanphamvay').value;
+  
+      // Tạo một đối tượng JSON chứa dữ liệu nghề nghiệp
+      var sanphamvayData = {
+        value: sanphamvayValue
+      };
+  
+      // Gửi yêu cầu HTTP POST đến API
+      fetch('http://localhost:8080/sanphamvay/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(sanphamvayData)
+      })
+      .then(function(response) {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error('Thêm sản phẩm vay thất bại');
+        }
+      })
+      .then(function(data) {
+        console.log(data); // Log thông báo từ API (nghenghiep added successfully)
+        // Làm mới trang
+        location.reload(); // Tải lại trang
+      })
+      .catch(function(error) {
+        console.error(error); // Log lỗi nếu có
+      });
+    });
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+    var addChinhanh = document.getElementById("add-chinhanh");
+    addChinhanh.addEventListener('click', function() {
+      var chinhanhValue = document.getElementById('chinhanh').value;
+  
+      // Tạo một đối tượng JSON chứa dữ liệu nghề nghiệp
+      var chinhanhData = {
+        value: chinhanhValue
+      };
+  
+      // Gửi yêu cầu HTTP POST đến API
+      fetch('http://localhost:8080/chinhanh/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(chinhanhData)
+      })
+      .then(function(response) {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error('Thêm chi nhánh vay thất bại');
+        }
+      })
+      .then(function(data) {
+        console.log(data); // Log thông báo từ API (nghenghiep added successfully)
+        // Làm mới trang
+        location.reload(); // Tải lại trang
+      })
+      .catch(function(error) {
+        console.error(error); // Log lỗi nếu có
+      });
+    });
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+    var addKenhvay = document.getElementById("add-kenhvay");
+    addKenhvay.addEventListener('click', function() {
+      var kenhvayValue = document.getElementById('kenhvay').value;
+  
+      // Tạo một đối tượng JSON chứa dữ liệu nghề nghiệp
+      var kenhvayData = {
+        value: kenhvayValue
+      };
+  
+      // Gửi yêu cầu HTTP POST đến API
+      fetch('http://localhost:8080/kenhvay/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(kenhvayData)
+      })
+      .then(function(response) {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error('Thêm kênh vay thất bại');
+        }
+      })
+      .then(function(data) {
+        console.log(data); // Log thông báo từ API (nghenghiep added successfully)
+        // Làm mới trang
+        location.reload(); // Tải lại trang
+      })
+      .catch(function(error) {
+        console.error(error); // Log lỗi nếu có
+      });
+    });
+  });
   document.addEventListener('DOMContentLoaded', function() {
     // Gắn sự kiện click cho các nút
     var btn1 = document.getElementById('btn1');
@@ -415,7 +554,7 @@ document.addEventListener('DOMContentLoaded', function() {
      thunhaplst.style.display = 'none';
     sanphamvaylst.style.display = 'none';
      chinhanhlst.style.display = 'none';
-     kenhvatlst.style.display = 'none';
+     kenhvaylst.style.display = 'none';
     });
   
     btn2.addEventListener('click', function() {
@@ -424,7 +563,7 @@ document.addEventListener('DOMContentLoaded', function() {
         thunhaplst.style.display = 'none';
        sanphamvaylst.style.display = 'none';
         chinhanhlst.style.display = 'none';
-        kenhvatlst.style.display = 'none';
+        kenhvaylst.style.display = 'none';
     });
   
     btn3.addEventListener('click', function() {
@@ -434,7 +573,7 @@ document.addEventListener('DOMContentLoaded', function() {
       thunhaplst.style.display = 'block';
      sanphamvaylst.style.display = 'none';
       chinhanhlst.style.display = 'none';
-      kenhvatlst.style.display = 'none';
+      kenhvaylst.style.display = 'none';
     });
   
     btn4.addEventListener('click', function() {
@@ -444,7 +583,7 @@ document.addEventListener('DOMContentLoaded', function() {
       thunhaplst.style.display = 'none';
      sanphamvaylst.style.display = 'block';
       chinhanhlst.style.display = 'none';
-      kenhvatlst.style.display = 'none';
+      kenhvaylst.style.display = 'none';
     });
   
     btn5.addEventListener('click', function() {
@@ -454,7 +593,7 @@ document.addEventListener('DOMContentLoaded', function() {
       thunhaplst.style.display = 'none';
      sanphamvaylst.style.display = 'none';
       chinhanhlst.style.display = 'block';
-      kenhvatlst.style.display = 'none';
+      kenhvaylst.style.display = 'none';
     });
   
     btn6.addEventListener('click', function() {
