@@ -1,0 +1,43 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-container button {
+    margin-right: 5px;
+}
+.btn-row{
+    display: flex;
+}
+.btn{
+    width: 2vw;
+    height: 1vw;
+    background-color: gray;
+}
+.btn:hover{
+    background-color:red;
+}
+#nghenghieplist{
+    display: none;
+}
+#chinhanhlist{
+    display: none;
+}
+#sanphamvaylist{
+    display: none;
+}
+#kenhvaylist{
+    display: none;
+}
+#thunhaplist{
+    display: none;
+}

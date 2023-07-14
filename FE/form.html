@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="css/form.css" />
     <title>Vay Online</title>
     <script src="js/form.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 
@@ -38,9 +39,9 @@
                 <div class="title-lable">
                     <h1>Họ và tên:</h1>
                     <h1>CMND:</h1>
-                    <h1 style="margin-bottom: 5.5vw">Địa chỉ:</h1>
+                    <h1 style="margin-bottom: 4.7vw">Địa chỉ:</h1>
                     <h1>Số điện thoại:</h1>
-                    <h1>Email:</h1>
+                    <h1 style="margin-bottom: 1vw;">Email:</h1>
                     <h1>Nghề nghiệp:</h1>
                 </div>
                 <div class="input-form">
@@ -48,12 +49,11 @@
 
 
                     <input type="text" id="cmnd" required><br>
+
                     <label for="tinhthanh">Tỉnh thành:</label>
-                    
                     <select style="margin-bottom: 1vw;" id="tinhthanh" onchange="updateQuanHuyenOptions()">
                         <option value="">Chọn tỉnh thành</option>
-                        
-                        <!-- Thêm các tùy chọn khác -->
+                        <!-- Tùy chọn sẽ được thêm thông qua JavaScript -->
                     </select>
                     <br>
                     <label for="quanhuyen">Quận huyện:</label>
@@ -74,15 +74,7 @@
 
 
                     <select style="margin-bottom: 1vw;" id="nghenghiep">
-                        <option value="nghe1">Bác Sĩ</option>
-                        <option value="nghe2">Lập trình viên</option>
-                        <option value="nghe3">Kinh doanh</option>
-                        <option value="nghe4">Kỹ sư</option>
-                        <option value="nghe5">Nông dân</option>
-
-                        <option value="nghe6">Tài xế</option>
-                        <option value="nghe7">Nhân viên nhân hàng</option>
-                        <option value="nghe8">Phóng viên</option>
+                       
                         <!-- Thêm các tùy chọn khác -->
                     </select>
                 </div>
@@ -91,12 +83,7 @@
 
             <label for="thunhap">Thu nhập:</label>
             <select style="margin-left:3.2vw" id="thunhap" required>
-                <option value="option1">Dưới 3 triệu</option>
-                <option value="option2">Từ 3 đến 5 triệu</option>
-                <option value="option3">Từ 5 đến 10 triệu</option>
-                <option value="option4">Từ 10 đến 20 triệu</option>
-                <option value="option5">Trên 20 triệu</option>
-                <!-- Add more options as needed -->
+                <!-- Options will be populated dynamically by JavaScript -->
             </select><br>
             <div class="col">
                 <div class="num">2</div>
@@ -104,10 +91,7 @@
             </div>
             <label for="sanphamchovay">Sản phẩm vay:</label>
             <select style="    margin-left: 0.8vw; margin-bottom: 1vw;" id="sanphamchovay" required>
-                <option value="option1">Cho vay nhu cầu nhà ở</option>
-                <option value="option2">Cho vay nhu cầu mua xe</option>
-
-                <!-- Add more options as needed -->
+               
             </select><br>
             <label for="tienvay">Tiền vay:</label>
             <input style=" margin-left:3.1vw;" type="text" id="tienvay" required><br>
@@ -118,18 +102,14 @@
             <label for="chinhanh">Chi nhánh:</label>
 
             <select style="margin-left: 2.6vw; margin-bottom: 1vw;" id="chinhanh" required>
-                <option value="option1">Chi nhánh Hà Nội</option>
-                <option value="option2">Chi nhánh Hồ Chí Minh</option>
-                <option value="option3">Chi nhánh Hải Phòng</option>
+               
                 <!-- Add more options as needed -->
             </select><br>
 
             <label for="kenhvay">Kênh vay:</label>
 
             <select style="margin-left:3.04vw;" id="kenhvay" required>
-                <option value="option1">Internet</option>
-                <option value="option2">Báo</option>
-                <option value="option3">Email</option>
+              
                 <!-- Add more options as needed -->
             </select><br>
             <label for="agreeCheckbox">
@@ -145,6 +125,83 @@
 
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: "https://vapi.vnappmob.com/api/province",
+                method: "GET",
+                dataType: "json",
+                success: function (response) {
+                    var tinhThanhOptions = $("#tinhthanh");
+
+                    response.results.forEach(function (tinhThanh) {
+                        var option = $("<option>").val(tinhThanh.province_id).text(tinhThanh.province_name);
+                        tinhThanhOptions.append(option);
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        });
+
+
+        function updateQuanHuyenOptions() {
+            var selectedTinhThanh = $("#tinhthanh").val();
+            var quanHuyenOptions = $("#quanhuyen");
+
+            // Xóa tất cả các tùy chọn quận huyện hiện có
+            quanHuyenOptions.empty();
+
+            // Kiểm tra nếu tỉnh thành đã được chọn
+            if (selectedTinhThanh) {
+                // Gửi yêu cầu GET đến API của VOD để lấy danh sách quận huyện
+                $.ajax({
+                    url: "https://vapi.vnappmob.com/api/province/district/" + selectedTinhThanh,
+                    method: "GET",
+                    dataType: "json",
+                    success: function (response) {
+                        response.results.forEach(function (quanHuyen) {
+                            var option = $("<option>").val(quanHuyen.district_id).text(quanHuyen.district_name);
+                            quanHuyenOptions.append(option);
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+        }
+
+        var selectedTinhThanh = $("#tinhthanh").val();
+        var quanHuyenOptions = $("#quanhuyen");
+
+        // Xóa tất cả các tùy chọn quận huyện hiện có
+        quanHuyenOptions.empty();
+
+        // Kiểm tra nếu tỉnh thành đã được chọn
+        if (selectedTinhThanh) {
+            // Lấy danh sách quận huyện từ GeoNames
+            $.ajax({
+                url: "http://api.geonames.org/childrenJSON?geonameId=" + selectedTinhThanh + "&username=demo",
+                method: "GET",
+                dataType: "json",
+                success: function (response) {
+                    response.geonames.forEach(function (quanHuyen) {
+                        var option = $("<option>").val(quanHuyen.geonameId).text(quanHuyen.name);
+                        quanHuyenOptions.append(option);
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        }
+
+    </script>
+   
 </body>
+
+
 
 </html>

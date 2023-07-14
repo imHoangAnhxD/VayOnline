@@ -6,7 +6,7 @@ function addClient() {
         return;
     }
 
-    var id = 1;
+    var id =1;
     var hoten = document.getElementById("hoten").value;
     var cmnd = document.getElementById("cmnd").value;
     var diachi = document.getElementById("diachi").value;
@@ -111,48 +111,71 @@ function normalizeName() {
     // Cập nhật giá trị trong ô input
     inputElement.value = name;
 }
-// Tải dữ liệu từ tệp JSON
-fetch('data.json')
-  .then(response => response.json())
-  .then(data => {
-    // Lấy danh sách tỉnh/thành phố
-    var tinhThanhSelect = document.getElementById("tinhthanh");
-    data.tinhThanh.forEach(tinhThanh => {
-      var option = document.createElement("option");
-      option.value = tinhThanh.id;
-      option.textContent = tinhThanh.name;
-      tinhThanhSelect.appendChild(option);
+
+
+
+// Gọi API để lấy danh sách tùy chọn từ cổng localhost:8080
+fetch('http://localhost:8080/thunhap')
+.then(response => response.json())
+.then(data => {
+    data.forEach(thunhap => {
+        const option = document.createElement('option');
+        option.value = thunhap.value;
+        option.textContent = thunhap.value;
+        document.getElementById('thunhap').appendChild(option);
     });
+})
+.catch(error => console.error(error));
 
-    // Lấy danh sách quận/huyện khi người dùng chọn tỉnh/thành phố
-    tinhThanhSelect.addEventListener("change", function() {
-      var selectedTinhThanh = data.tinhThanh.find(tinhThanh => tinhThanh.id === tinhThanhSelect.value);
-      var quanHuyenSelect = document.getElementById("quanhuyen");
-      quanHuyenSelect.innerHTML = ""; // Xóa tất cả các tùy chọn hiện có
-
-      selectedTinhThanh.quanHuyen.forEach(quanHuyen => {
-        var option = document.createElement("option");
-        option.value = quanHuyen.id;
-        option.textContent = quanHuyen.name;
-        quanHuyenSelect.appendChild(option);
-      });
+fetch('http://localhost:8080/nghenghiep')
+.then(response => response.json())
+.then(data => {
+    data.forEach(nghenghiep => {
+        const option = document.createElement('option');
+        option.value = nghenghiep.value;
+        option.textContent = nghenghiep.value;
+        document.getElementById('nghenghiep').appendChild(option);
     });
-  });
+})
+.catch(error => console.error(error));
 
- const cmndInput = document.getElementById('cmnd');
-const apiUrl = 'http://localhost:8080/client/check-cmnd/';
-
-function checkCMND() {
-  const cmnd = cmndInput.value;
-
-  
-  fetch(apiUrl + cmnd)
-    .then(response => response.text())
-    .then(data => {
-      // Display the response
-      alert(data);
-    })
-    .catch(error => {
-      console.error('Error:', error);
+fetch('http://localhost:8080/sanphamvay')
+.then(response => response.json())
+.then(data => {
+    data.forEach(sanphamvay => {
+        const option = document.createElement('option');
+        option.value = sanphamvay.value;
+        option.textContent = sanphamvay.value;
+        document.getElementById('sanphamchovay').appendChild(option);
     });
-}
+})
+.catch(error => console.error(error));
+
+
+fetch('http://localhost:8080/chinhanh')
+.then(response => response.json())
+.then(data => {
+    data.forEach(chinhanh => {
+        const option = document.createElement('option');
+        option.value = chinhanh.value;
+        option.textContent = chinhanh.value;
+        document.getElementById('chinhanh').appendChild(option);
+    });
+})
+.catch(error => console.error(error));
+
+fetch('http://localhost:8080/kenhvay')
+.then(response => response.json())
+.then(data => {
+    data.forEach(kenhvay => {
+        const option = document.createElement('option');
+        option.value = kenhvay.value;
+        option.textContent = kenhvay.value;
+        document.getElementById('kenhvay').appendChild(option);
+    });
+})
+.catch(error => console.error(error));
+
+
+
+
