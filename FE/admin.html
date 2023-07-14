@@ -8,16 +8,32 @@
   </head>
 
   <body>
+    <div class="contain-header">
+      <div class="header">
+          <div class="logo">
+              <img src="img/logo.png">
+          </div>
+          <div class="headertext"> ĐĂNG KÝ TRỰC TUYẾN</div>
+          <div class="tabtext"> Trang chủ</div>
+          <div class="tabtext"> Ngân hàng điện tử</div>
+          <div class="tabtext"> Vay online</div>
+          <div class="tabtext"> Mua bán ngoại tệ</div>
+          <div class="tabtext"> Thẻ</div>
+          <div class="tabtext"> Sản phẩm khác</div>
+      </div>
+      <div class="bg-text">Vay Online</div>
+      <div class="bg-text-2">Thu tục nhanh chóng - Tiện lợi</div>
+  </div>
     <div class="btn-row">
-      <div class="btn" id="btn1">1</div>
-      <div class="btn" id="btn2">2</div>
-      <div class="btn" id="btn3">3</div>
-      <div class="btn" id="btn4">4</div>
-      <div class="btn" id="btn5">5</div>
-      <div class="btn" id="btn6">6</div>
+      <div class="btn" id="btn1">Khách hàng</div>
+      <div class="btn" id="btn2">Nghề nghiệp</div>
+      <div class="btn" id="btn3">Thu nhập</div>
+      <div class="btn" id="btn4">Sản phẩm vay</div>
+      <div class="btn" id="btn5">Chi nhánh</div>
+      <div class="btn" id="btn6">Kênh vay</div>
     </div>
     <div id="clientlist">
-      <h1>Client List</h1>
+      <h1>Danh sách khách hàng</h1>
       <table id="client-table">
         <thead>
           <tr>
@@ -70,7 +86,10 @@
         </thead>
         <tbody id="thunhap-list"></tbody>
       </table>
-      <button>Thêm</button>
+      <label class="title-input">Thêm mới :</label>
+      <input type="text" id="thunhap">
+
+      <button id="add-thunhap">Thêm</button>
     </div>
     <div id="sanphamvaylist">
       <h1>Danh sách sản phẩm vay</h1>
@@ -84,8 +103,10 @@
         </thead>
         <tbody id="sanphamvay-list"></tbody>
       </table>
-      <label></label>
-      <button>Thêm</button>
+      <label class="title-input">Thêm mới :</label>
+      <input type="text" id="sanphamvay">
+
+      <button id="add-sanphamvay">Thêm</button>
     </div>
     <div id="chinhanhlist">
       <h1>Danh sách chi nhánh</h1>
@@ -99,7 +120,10 @@
         </thead>
         <tbody id="chinhanh-list"></tbody>
       </table>
-      <button>Thêm</button>
+      <label class="title-input">Thêm mới :</label>
+      <input type="text" id="chinhanh">
+
+      <button id="add-chinhanh">Thêm</button>
     </div>
 
     <div id="kenhvaylist">
@@ -114,7 +138,10 @@
         </thead>
         <tbody id="kenhvay-list"></tbody>
       </table>
-      <button>Thêm</button>
+      <label class="title-input">Thêm mới :</label>
+      <input type="text" id="kenhvay">
+
+      <button id="add-kenhvay">Thêm</button>
     </div>
     
   </body>

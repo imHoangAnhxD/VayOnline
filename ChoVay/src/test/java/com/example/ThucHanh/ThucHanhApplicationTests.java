@@ -1,10 +1,10 @@
-package com.example.BTL;
+package com.example.ThucHanh;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BtlApplicationTests {
+class ThucHanhApplicationTests {
 
 	@Test
 	void contextLoads() {
