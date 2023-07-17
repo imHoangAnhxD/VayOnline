@@ -6,7 +6,7 @@ function addClient() {
         return;
     }
 
-    var id =1;
+    var id =10;
     var hoten = document.getElementById("hoten").value;
     var cmnd = document.getElementById("cmnd").value;
     var diachi = document.getElementById("diachi").value;
