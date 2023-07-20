@@ -159,6 +159,7 @@
             <button class="V-ver" onclick="addClient()">Gửi đăng ký</button>
             <button class="E-ver" onclick="addClient()">SEND FORM</button>
             <span id="error-message" style="color: red;"></span>
+            <div id="connectionStatus" style="color: red; font-size: 18px; text-align: center; margin-top: 10px;"></div>
            
 
         </div>
@@ -194,6 +195,37 @@
   }
 }
 
+    </script>
+     <script>
+        // Function to check internet connectivity
+        function checkInternetConnection() {
+            // Use an image URL to check the internet connectivity
+            const imageUrl = 'https://www.example.com/some-image.jpg';
+
+            // Create a new Image object
+            const img = new Image();
+
+            // Add event listeners to check the status of the image loading
+            img.onload = function() {
+                document.getElementById('connectionStatus').textContent = ''; // Internet is available
+            };
+
+            img.onerror = function() {
+                document.getElementById('connectionStatus').textContent = 'No internet connection'; // Internet is not available
+            };
+
+            // Set the source of the image to trigger loading and check connectivity
+            img.src = imageUrl;
+        }
+
+        // Call the function to check internet connectivity on page load
+        window.onload = checkInternetConnection;
+
+        // Function to toggle language remains the same
+
+        // Function to update district options based on selected province remains the same
+
+        // Rest of the code remains the same
     </script>
 
 
