@@ -11,38 +11,58 @@
 
 <body>
     <div class="contain-header">
+        <button id="languageButton" onclick="toggleLanguage()">Switch Language</button>
         <div class="header">
             <div class="logo">
                 <img src="img/logo.png">
             </div>
-            <div class="headertext"> ĐĂNG KÝ TRỰC TUYẾN</div>
-            <div class="tabtext"> Trang chủ</div>
-            <div class="tabtext"> Ngân hàng điện tử</div>
-            <div class="tabtext"> Vay online</div>
-            <div class="tabtext"> Mua bán ngoại tệ</div>
-            <div class="tabtext"> Thẻ</div>
-            <div class="tabtext"> Sản phẩm khác</div>
+            <div class="headertext  V-ver"> ĐĂNG KÝ TRỰC TUYẾN</div>
+            <div class="tabtext V-ver"> Trang chủ</div>
+            <div class="tabtext V-ver"> Ngân hàng điện tử</div>
+            <div class="tabtext V-ver"> Vay online</div>
+            <div class="tabtext V-ver"> Mua bán ngoại tệ</div>
+            <div class="tabtext V-ver"> Thẻ</div>
+            <div class="tabtext V-ver"> Sản phẩm khác</div>
+
+            <div class="headertext E-ver">ONLINE REGISTRATION</div>
+            <div class="tabtext E-ver">Home</div>
+            <div class="tabtext E-ver">Electronic Banking</div>
+            <div class="tabtext E-ver">Online Loans</div>
+            <div class="tabtext E-ver">Foreign Currency Exchange</div>
+            <div class="tabtext E-ver">Cards</div>
+            <div class="tabtext E-ver">Other Products</div>
+
         </div>
         <div class="bg-text">Vay Online</div>
         <div class="bg-text-2">Thu tục nhanh chóng - Tiện lợi</div>
     </div>
     <div class="contain-form">
         <div id="myForm" class="form-group">
-            <h1 class="title-form">FORM ĐĂNG KÝ</h1>
+            <h1 class="title-form V-ver">FORM ĐĂNG KÝ</h1>
+            <h1 class="title-form E-ver">LOAN REGISTRATION FORM</h1>
 
 
             <div class="col">
                 <div class="num">1</div>
-                <diV class="col-txt">Thông tin cá nhân :</diV>
+                <diV class="col-txt V-ver">Thông tin cá nhân :</diV>
+                <diV class="col-txt E-ver">Personal information :</diV>
             </div>
             <div class="canhan">
-                <div class="title-lable">
-                    <h1>Họ và tên:</h1>
+                <div class="title-lable V-ver">
+                    <h1 >Họ và tên:</h1>
                     <h1>CMND:</h1>
                     <h1 style="margin-bottom: 5.4vw">Địa chỉ:</h1>
                     <h1>Số điện thoại:</h1>
                     <h1 style="margin-bottom: 1vw;">Email:</h1>
                     <h1>Nghề nghiệp:</h1>
+                </div>
+                <div class="title-lable E-ver">
+                    <h1 >Name:</h1>
+                    <h1>ID Card:</h1>
+                    <h1 style="margin-bottom: 10vw">Address:</h1>
+                    <h1>Tel:</h1>
+                    <h1 style="margin-bottom: 1vw;">Email:</h1>
+                    <h1>Job:</h1>
                 </div>
                 <div class="input-form">
                     <input type="text" id="hoten" required onblur="normalizeName()"><br>
@@ -50,13 +70,16 @@
 
                     <input type="text" id="cmnd" required><br>
 
-                    <label for="tinhthanh">Tỉnh thành:</label>
+                    <label for="tinhthanh" class="V-ver">Tỉnh thành:</label>
+                    <label for="tinhthanh" class="E-ver">Province:</label>
                     <select style="margin-bottom: 1vw;" id="tinhthanh" onchange="updateQuanHuyenOptions()">
-                        <option value="">Chọn tỉnh thành</option>
+                        <option value="" ></option>
+                        
                         <!-- Tùy chọn sẽ được thêm thông qua JavaScript -->
                     </select>
                     <br>
-                    <label for="quanhuyen">Quận huyện:</label>
+                    <label for="quanhuyen" class="V-ver">Quận huyện:</label>
+                    <label for="quanhuyen" class="E-ver">District:</label>
                     <select style="margin-bottom: 1vw;" id="quanhuyen">
                         <option value="">Chọn quận huyện</option>
                     </select>
@@ -81,50 +104,99 @@
             </div>
 
 
-            <label for="thunhap">Thu nhập:</label>
+            <label for="thunhap" class="V-ver">Thu nhập:</label>
+            <label for="thunhap" class="E-ver">Income:</label>
             <select style="margin-left:3.2vw" id="thunhap" required>
                 <!-- Options will be populated dynamically by JavaScript -->
             </select><br>
             <div class="col">
                 <div class="num">2</div>
-                <diV class="col-txt">Thông tin đăng ký dịch vụ : </diV>
+                <diV class="col-txt V-ver">Thông tin đăng ký dịch vụ : </diV>
+                <diV class="col-txt E-ver">Service registration information: </diV>
             </div>
-            <label for="sanphamchovay">Sản phẩm vay:</label>
+            <label for="sanphamchovay" class="V-ver">Sản phẩm vay:</label>
+            <label for="sanphamchovay" class="E-ver">Loan products:</label>
             <select style="    margin-left: 0.8vw; margin-bottom: 1vw;" id="sanphamchovay" required>
                
             </select><br>
-            <label for="tienvay">Tiền vay:</label>
+            <label for="tienvay" class="V-ver">Tiền vay:</label>
+            <label for="tienvay" class="E-ver">Loan:</label>
             <input style=" margin-left:3.1vw;" type="text" id="tienvay" required><br>
             <div class="col">
                 <div class="num">3</div>
-                <diV class="col-txt">Thông tin khác :</diV>
+                <diV class="col-txt V-ver">Thông tin khác :</diV>
+                <diV class="col-txt E-ver">Other information:</diV>
             </div>
-            <label for="chinhanh">Chi nhánh:</label>
+            <label for="chinhanh" class="V-ver">Chi nhánh:</label>
+            <label for="chinhanh" class="E-ver">Branch:</label>
 
             <select style="margin-left: 2.6vw; margin-bottom: 1vw;" id="chinhanh" required>
                
                 <!-- Add more options as needed -->
             </select><br>
 
-            <label for="kenhvay">Kênh vay:</label>
+            <label for="kenhvay" class="V-ver">Kênh vay:</label>
+            <label for="kenhvay" class="E-ver">Loan channel:</label>
 
             <select style="margin-left:3.04vw;" id="kenhvay" required>
               
                 <!-- Add more options as needed -->
             </select><br>
-            <label for="agreeCheckbox">
+            <label for="agreeCheckbox" class="V-ver">
                 <input style="width: 1vw; height: 0.7vw;;" type="checkbox" id="agreeCheckbox" required>
                 Tôi đồng ý với các
                 <a
                     href="https://bidv.com.vn/wps/wcm/connect/0cacdd82-b3ee-4489-835d-0aa38a304099/Ban_dieu_kien_dieu_khoan+the+GNQTDN_Final.pdf?MOD=AJPERES&CVID=n46gujc">điều
                     khoản của BIDV</a>
             </label>
+            <label for="agreeCheckbox" class="E-ver">
+                <input style="width: 1vw; height: 0.7vw;;" type="checkbox" id="agreeCheckbox" required>
+                I agree to
+                <a
+                    href="https://bidv.com.vn/wps/wcm/connect/0cacdd82-b3ee-4489-835d-0aa38a304099/Ban_dieu_kien_dieu_khoan+the+GNQTDN_Final.pdf?MOD=AJPERES&CVID=n46gujc">the terms of both BIDV</a>
+            </label>
             <br>
-            <button onclick="addClient()">Gửi đăng ký</button>
+            <button class="V-ver" onclick="addClient()">Gửi đăng ký</button>
+            <button class="E-ver" onclick="addClient()">SEND</button>
             <span id="error-message" style="color: red;"></span>
+           
 
         </div>
     </div>
+    
+    <script>
+        function toggleLanguage() {
+  // Lấy danh sách các phần tử có class 'E-ver'
+  const englishElements = document.querySelectorAll('.E-ver');
+  // Lấy danh sách các phần tử có class 'V-ver'
+  const vietnameseElements = document.querySelectorAll('.V-ver');
+
+  // Kiểm tra trạng thái hiển thị của phần tử đầu tiên trong danh sách tiếng Anh (englishElements)
+  const englishDisplayStyle = window.getComputedStyle(englishElements[0]).display;
+  
+  // Tùy vào trạng thái hiển thị của 'E-ver', thực hiện hiển thị và ẩn các phần tử tương ứng
+  if (englishDisplayStyle === "none") {
+    // Nếu 'E-ver' đang ẩn, hiển thị nó và ẩn 'V-ver'
+    englishElements.forEach(element => {
+      element.style.display = "block";
+    });
+    vietnameseElements.forEach(element => {
+      element.style.display = "none";
+    });
+  } else {
+    // Nếu 'E-ver' đang hiển thị, ẩn nó và hiển thị 'V-ver'
+    englishElements.forEach(element => {
+      element.style.display = "none";
+    });
+    vietnameseElements.forEach(element => {
+      element.style.display = "block";
+    });
+  }
+}
+
+    </script>
+
+
     <script>
         $(document).ready(function () {
             $.ajax({
