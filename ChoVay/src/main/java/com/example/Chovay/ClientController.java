@@ -21,12 +21,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import java.util.Base64;
 import com.example.Chovay.Client;
 
 @RestController
 @CrossOrigin
 public class ClientController {
+	  // Mã hóa API thành Base64
+	  public String encodeAPI(String apiString) {
+        return Base64.getEncoder().encodeToString(apiString.getBytes());
+    }
+
+    // Giải mã Base64 thành chuỗi API ban đầu
+    public String decodeAPI(String encodedAPI) {
+        byte[] decodedBytes = Base64.getDecoder().decode(encodedAPI);
+        return new String(decodedBytes);
+    }
 	@GetMapping("/clients")
 	public List<Client> getClients() {
 	    List<Client> clients = new ArrayList<>();
