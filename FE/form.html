@@ -49,15 +49,15 @@
             </div>
             <div class="canhan">
                 <div class="title-lable V-ver">
-                    <h1 >Họ và tên:</h1>
+                    <h1>Họ và tên:</h1>
                     <h1>CMND:</h1>
                     <h1 style="margin-bottom: 5.4vw">Địa chỉ:</h1>
                     <h1>Số điện thoại:</h1>
-                    <h1 style="margin-bottom: 1vw;">Email:</h1>
+                    <h1 style="margin-bottom: 1.8vw;">Email:</h1>
                     <h1>Nghề nghiệp:</h1>
                 </div>
                 <div class="title-lable E-ver">
-                    <h1 >Name:</h1>
+                    <h1>Name:</h1>
                     <h1>ID Card:</h1>
                     <h1 style="margin-bottom: 10vw">Address:</h1>
                     <h1>Tel:</h1>
@@ -73,8 +73,8 @@
                     <label for="tinhthanh" class="V-ver">Tỉnh thành:</label>
                     <label for="tinhthanh" class="E-ver">Province:</label>
                     <select style="margin-bottom: 1vw;" id="tinhthanh" onchange="updateQuanHuyenOptions()">
-                        <option value="" ></option>
-                        
+                        <option value=""></option>
+
                         <!-- Tùy chọn sẽ được thêm thông qua JavaScript -->
                     </select>
                     <br>
@@ -97,7 +97,7 @@
 
 
                     <select style="margin-bottom: 1vw;" id="nghenghiep">
-                       
+
                         <!-- Thêm các tùy chọn khác -->
                     </select>
                 </div>
@@ -117,7 +117,7 @@
             <label for="sanphamchovay" class="V-ver">Sản phẩm vay:</label>
             <label for="sanphamchovay" class="E-ver">Loan products:</label>
             <select style="    margin-left: 0.8vw; margin-bottom: 1vw;" id="sanphamchovay" required>
-               
+
             </select><br>
             <label for="tienvay" class="V-ver">Tiền vay:</label>
             <label for="tienvay" class="E-ver">Loan:</label>
@@ -131,7 +131,7 @@
             <label for="chinhanh" class="E-ver">Branch:</label>
 
             <select style="margin-left: 2.6vw; margin-bottom: 1vw;" id="chinhanh" required>
-               
+
                 <!-- Add more options as needed -->
             </select><br>
 
@@ -139,7 +139,7 @@
             <label for="kenhvay" class="E-ver">Loan channel:</label>
 
             <select style="margin-left:3.04vw;" id="kenhvay" required>
-              
+
                 <!-- Add more options as needed -->
             </select><br>
             <label for="agreeCheckbox" class="V-ver">
@@ -153,79 +153,74 @@
                 <input style="width: 1vw; height: 0.7vw;;" type="checkbox" id="agreeCheckbox" required>
                 I agree to
                 <a
-                    href="https://bidv.com.vn/wps/wcm/connect/0cacdd82-b3ee-4489-835d-0aa38a304099/Ban_dieu_kien_dieu_khoan+the+GNQTDN_Final.pdf?MOD=AJPERES&CVID=n46gujc">the terms of both BIDV</a>
+                    href="https://bidv.com.vn/wps/wcm/connect/0cacdd82-b3ee-4489-835d-0aa38a304099/Ban_dieu_kien_dieu_khoan+the+GNQTDN_Final.pdf?MOD=AJPERES&CVID=n46gujc">the
+                    terms of both BIDV</a>
             </label>
             <br>
             <button class="V-ver" onclick="addClient()">Gửi đăng ký</button>
             <button class="E-ver" onclick="addClient()">SEND FORM</button>
             <span id="error-message" style="color: red;"></span>
             <div id="connectionStatus" style="color: red; font-size: 18px; text-align: center; margin-top: 10px;"></div>
-           
+
 
         </div>
     </div>
-    
+
     <script>
         function toggleLanguage() {
-  // Lấy danh sách các phần tử có class 'E-ver'
-  const englishElements = document.querySelectorAll('.E-ver');
-  // Lấy danh sách các phần tử có class 'V-ver'
-  const vietnameseElements = document.querySelectorAll('.V-ver');
+            // Lấy danh sách các phần tử có class 'E-ver'
+            const englishElements = document.querySelectorAll('.E-ver');
+            // Lấy danh sách các phần tử có class 'V-ver'
+            const vietnameseElements = document.querySelectorAll('.V-ver');
 
-  // Kiểm tra trạng thái hiển thị của phần tử đầu tiên trong danh sách tiếng Anh (englishElements)
-  const englishDisplayStyle = window.getComputedStyle(englishElements[0]).display;
-  
-  // Tùy vào trạng thái hiển thị của 'E-ver', thực hiện hiển thị và ẩn các phần tử tương ứng
-  if (englishDisplayStyle === "none") {
-    // Nếu 'E-ver' đang ẩn, hiển thị nó và ẩn 'V-ver'
-    englishElements.forEach(element => {
-      element.style.display = "block";
-    });
-    vietnameseElements.forEach(element => {
-      element.style.display = "none";
-    });
-  } else {
-    // Nếu 'E-ver' đang hiển thị, ẩn nó và hiển thị 'V-ver'
-    englishElements.forEach(element => {
-      element.style.display = "none";
-    });
-    vietnameseElements.forEach(element => {
-      element.style.display = "block";
-    });
-  }
-}
+            // Kiểm tra trạng thái hiển thị của phần tử đầu tiên trong danh sách tiếng Anh (englishElements)
+            const englishDisplayStyle = window.getComputedStyle(englishElements[0]).display;
 
-    </script>
-     <script>
-        // Function to check internet connectivity
-        function checkInternetConnection() {
-            // Use an image URL to check the internet connectivity
-            const imageUrl = 'https://www.example.com/some-image.jpg';
-
-            // Create a new Image object
-            const img = new Image();
-
-            // Add event listeners to check the status of the image loading
-            img.onload = function() {
-                document.getElementById('connectionStatus').textContent = ''; // Internet is available
-            };
-
-            img.onerror = function() {
-                document.getElementById('connectionStatus').textContent = 'No internet connection'; // Internet is not available
-            };
-
-            // Set the source of the image to trigger loading and check connectivity
-            img.src = imageUrl;
+            // Tùy vào trạng thái hiển thị của 'E-ver', thực hiện hiển thị và ẩn các phần tử tương ứng
+            if (englishDisplayStyle === "none") {
+                // Nếu 'E-ver' đang ẩn, hiển thị nó và ẩn 'V-ver'
+                englishElements.forEach(element => {
+                    element.style.display = "block";
+                });
+                vietnameseElements.forEach(element => {
+                    element.style.display = "none";
+                });
+            } else {
+                // Nếu 'E-ver' đang hiển thị, ẩn nó và hiển thị 'V-ver'
+                englishElements.forEach(element => {
+                    element.style.display = "none";
+                });
+                vietnameseElements.forEach(element => {
+                    element.style.display = "block";
+                });
+            }
         }
 
-        // Call the function to check internet connectivity on page load
-        window.onload = checkInternetConnection;
+    </script>
+    <script>
+        function checkNetworkStatus() {
+    var connectionDiv = document.getElementById("connectionStatus");
+    var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
 
-        // Function to toggle language remains the same
+    if (connection) {
+        if (connection.effectiveType === '4g') {
+            connectionDiv.textContent = "";
+            connectionDiv.style.color = "green";
+        } else {
+            connectionDiv.textContent = "Không có kết nối mạng"
+            connectionDiv.style.color = "red";
+        }
+    } else {
+        connectionDiv.textContent = "Không thể xác định trạng thái kết nối mạng";
+        connectionDiv.style.color = "red";
+    }
+}
 
-        // Function to update district options based on selected province remains the same
+// Kiểm tra trạng thái kết nối mạng ban đầu
+checkNetworkStatus();
 
-        // Rest of the code remains the same
+
+
     </script>
 
 
@@ -303,7 +298,7 @@
         }
 
     </script>
-   
+
 </body>
 
 
