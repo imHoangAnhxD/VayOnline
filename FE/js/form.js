@@ -6,7 +6,7 @@ function addClient() {
         return;
     }
 
-    var id =0;
+    
     var hoten = document.getElementById("hoten").value;
     var cmnd = document.getElementById("cmnd").value;
     var diachi = document.getElementById("diachi").value;
@@ -60,7 +60,6 @@ function addClient() {
     var diachichung=tinhthanhtxt + ", " + quanhuyentxt + ", " + diachi;
 
     var client = {
-        id: id++,
         hoten: hoten,
         cmnd: cmnd,
         diachi: diachichung,
@@ -87,7 +86,7 @@ function addClient() {
         }
     };
 
-    xhr.open("POST", "http://localhost:8080/client/save/" + id, true);
+    xhr.open("POST", "http://localhost:8080/client/save", true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(client));
 }
@@ -97,11 +96,10 @@ function normalizeName() {
     var inputElement = document.getElementById("hoten");
     var name = inputElement.value.trim();
 
-    // Chuyển đổi tất cả các chữ cái thành chữ thường
-    name = name.toLowerCase();
+   
 
     // Chuyển đổi chữ cái đầu tiên của mỗi từ thành chữ hoa
-    name = name.replace(/\b\w/g, function(l) {
+    name = name.toLowerCase().replace(/\b\w/g, function(l) {
         return l.toUpperCase();
     });
 
@@ -111,6 +109,7 @@ function normalizeName() {
     // Cập nhật giá trị trong ô input
     inputElement.value = name;
 }
+
 
 
 
