@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -21,14 +22,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.Base64;
+
 import com.example.Chovay.Client;
 
 @RestController
 @CrossOrigin
 public class ClientController {
+	
 	  // Mã hóa API thành Base64
-	  public String encodeAPI(String apiString) {
+    public String encodeAPI(String apiString) {
         return Base64.getEncoder().encodeToString(apiString.getBytes());
     }
 
@@ -37,6 +39,7 @@ public class ClientController {
         byte[] decodedBytes = Base64.getDecoder().decode(encodedAPI);
         return new String(decodedBytes);
     }
+    
 	@GetMapping("/clients")
 	public List<Client> getClients() {
 	    List<Client> clients = new ArrayList<>();
@@ -132,8 +135,74 @@ public Client getClient(@PathVariable String cmnd) {
 	
 	return client;
 }
-@PostMapping("/client/save/{id}")
-public String addClient(@RequestBody Client client, @PathVariable String id) {
+//@PostMapping("/client/save/{id}")
+//public String addClient(@RequestBody Client client, @PathVariable String id) {
+//    Connection connection = null;
+//    PreparedStatement ps = null;
+//    int result = 0;
+//    
+//    try {
+//        Class.forName("com.mysql.cj.jdbc.Driver");
+//        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chovayonl", "root", "Endgame3112");
+//
+//        
+//        PreparedStatement checkStatement = connection.prepareStatement("SELECT COUNT(*) FROM clientvo WHERE id = ?");
+//        checkStatement.setInt(1, Integer.parseInt(id));
+//        ResultSet checkResult = checkStatement.executeQuery();
+//        checkResult.next();
+//        int count = checkResult.getInt(1);
+//        checkResult.close();
+//        checkStatement.close();
+//
+//       
+//        if (count > 0) {
+//            ps = connection.prepareStatement("UPDATE clientvo SET hoten = ?, cmnd = ?, diachi = ?, tel = ?,email=?,nghenghiep=?,thunhap=?,sanphamchovay=?,tienvay=?,chinhanh=?,kenhvay=? WHERE id = ?");
+//            ps.setString(1, client.getHoten());
+//            ps.setString(2, client.getCmnd());
+//            ps.setString(3, client.getDiachi());
+//            ps.setString(4, client.getTel());
+//            ps.setString(5, client.getEmail());
+//            ps.setString(6, client.getNghenghiep());
+//            ps.setString(7, client.getThunhap());
+//            ps.setString(8, client.getSanphamchovay());
+//            ps.setInt(9,client.getTienvay());
+//            ps.setString(10, client.getChinhanh());
+//            ps.setString(11, client.getKenhvay());
+//            ps.setInt(12, Integer.parseInt(id));
+//        }
+//        // 
+//        else {
+//            ps = connection.prepareStatement("INSERT INTO clientvo VALUES (?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
+//            ps.setInt(1, Integer.valueOf(client.getId()));
+//            ps.setString(2, client.getHoten());
+//            ps.setString(3, client.getCmnd());
+//            ps.setString(4, client.getDiachi());
+//            ps.setString(5, client.getTel());
+//            ps.setString(6, client.getEmail());
+//            ps.setString(7, client.getNghenghiep());
+//            ps.setString(8, client.getThunhap());
+//            ps.setString(9, client.getSanphamchovay());
+//            ps.setInt(	10,client.getTienvay());
+//            ps.setString(11, client.getChinhanh());
+//            ps.setString(12, client.getKenhvay());
+//        }
+//        
+//        result = ps.executeUpdate();
+//        ps.close();
+//        connection.close();
+//        // Redirect the response to success page
+//        return "Add Successfully";
+//    } // End of try block
+//    catch (Exception e) {
+//        e.printStackTrace();
+//        return e.toString(); 
+//    }
+//    
+//}
+
+
+@PostMapping("/client/save")
+public String addClient(@RequestBody Client client) {
     Connection connection = null;
     PreparedStatement ps = null;
     int result = 0;
@@ -142,59 +211,29 @@ public String addClient(@RequestBody Client client, @PathVariable String id) {
         Class.forName("com.mysql.cj.jdbc.Driver");
         connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chovayonl", "root", "Endgame3112");
 
-        
-        PreparedStatement checkStatement = connection.prepareStatement("SELECT COUNT(*) FROM clientvo WHERE id = ?");
-        checkStatement.setInt(1, Integer.parseInt(id));
-        ResultSet checkResult = checkStatement.executeQuery();
-        checkResult.next();
-        int count = checkResult.getInt(1);
-        checkResult.close();
-        checkStatement.close();
+        // Use a PreparedStatement to insert the client data
+        ps = connection.prepareStatement("INSERT INTO clientvo (hoten, cmnd, diachi, tel, email, nghenghiep, thunhap, sanphamchovay, tienvay, chinhanh, kenhvay) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        ps.setString(1, client.getHoten());
+        ps.setString(2, client.getCmnd());
+        ps.setString(3, client.getDiachi());
+        ps.setString(4, client.getTel());
+        ps.setString(5, client.getEmail());
+        ps.setString(6, client.getNghenghiep());
+        ps.setString(7, client.getThunhap());
+        ps.setString(8, client.getSanphamchovay());
+        ps.setInt(9, client.getTienvay());
+        ps.setString(10, client.getChinhanh());
+        ps.setString(11, client.getKenhvay());
 
-       
-        if (count > 0) {
-            ps = connection.prepareStatement("UPDATE clientvo SET hoten = ?, cmnd = ?, diachi = ?, tel = ?,email=?,nghenghiep=?,thunhap=?,sanphamchovay=?,tienvay=?,chinhanh=?,kenhvay=? WHERE id = ?");
-            ps.setString(1, client.getHoten());
-            ps.setString(2, client.getCmnd());
-            ps.setString(3, client.getDiachi());
-            ps.setString(4, client.getTel());
-            ps.setString(5, client.getEmail());
-            ps.setString(6, client.getNghenghiep());
-            ps.setString(7, client.getThunhap());
-            ps.setString(8, client.getSanphamchovay());
-            ps.setInt(9,client.getTienvay());
-            ps.setString(10, client.getChinhanh());
-            ps.setString(11, client.getKenhvay());
-            ps.setInt(12, Integer.parseInt(id));
-        }
-        // 
-        else {
-            ps = connection.prepareStatement("INSERT INTO clientvo VALUES (?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
-            ps.setInt(1, Integer.valueOf(client.getId()));
-            ps.setString(2, client.getHoten());
-            ps.setString(3, client.getCmnd());
-            ps.setString(4, client.getDiachi());
-            ps.setString(5, client.getTel());
-            ps.setString(6, client.getEmail());
-            ps.setString(7, client.getNghenghiep());
-            ps.setString(8, client.getThunhap());
-            ps.setString(9, client.getSanphamchovay());
-            ps.setInt(	10,client.getTienvay());
-            ps.setString(11, client.getChinhanh());
-            ps.setString(12, client.getKenhvay());
-        }
-        
         result = ps.executeUpdate();
         ps.close();
         connection.close();
         // Redirect the response to success page
         return "Add Successfully";
-    } // End of try block
-    catch (Exception e) {
+    } catch (Exception e) {
         e.printStackTrace();
         return e.toString(); 
     }
-    
 }
 
 @DeleteMapping("/client/delete/{id}")
