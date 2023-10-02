@@ -2,39 +2,27 @@
 <html>
 <head>
     <title>Client Information</title>
-    <script>
-        function getClient() {
-            var id = document.getElementById("CMND").value;
-            var xhr = new XMLHttpRequest();
-            
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var client = JSON.parse(xhr.responseText);
-                    updateClientInfo(client);
-                }
-            };
-            
-            xhr.open("GET", "http://localhost:8080/client/" + id, true);
-            xhr.send();
-        }
-        
-        function updateClientInfo(client) {
-            document.getElementById("id").textContent = client.id;
-            document.getElementById("hoten").textContent = client.hoten;
-            document.getElementById("cmnd").textContent = client.cmnd;
-            document.getElementById("diachi").textContent = client.diachi;
-            document.getElementById("tel").textContent = client.tel;
-            document.getElementById("email").textContent = client.email;
-            document.getElementById("nghenghiep").textContent = client.nghenghiep;
-            document.getElementById("thunhap").textContent = client.thunhap;
-            document.getElementById("sanphamchovay").textContent = client.sanphamchovay;
-            document.getElementById("tienvay").textContent = client.tienvay;
-            document.getElementById("chinhanh").textContent = client.chinhanh;
-            document.getElementById("kenhvay").textContent = client.kenhvay;
-        }
-    </script>
+    <link rel="stylesheet" href="css/result.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/result.js"></script>
 </head>
 <body>
+    <div class="contain-header">
+        <div class="header">
+            <div class="logo">
+                <img src="img/logo.png">
+            </div>
+            <div class="headertext"> ĐĂNG KÝ TRỰC TUYẾN</div>
+            <div class="tabtext"> Trang chủ</div>
+            <div class="tabtext"> Ngân hàng điện tử</div>
+            <a style="text-decoration: none; color: black" href="form.html"><div  class="tabtext"> Vay online</div></a>
+            <div class="tabtext"> Mua bán ngoại tệ</div>
+            <div class="tabtext"> Thẻ</div>
+            <div class="tabtext"> Sản phẩm khác</div>
+        </div>
+        <div class="bg-text">Vay Online</div>
+        <div class="bg-text-2">Thu tục nhanh chóng - Tiện lợi</div>
+    </div>
     <label for="CMND">Client CMND:</label>
     <input type="text" id="CMND">
     <button onclick="getClient()">Get Client</button>
