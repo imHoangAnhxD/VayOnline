@@ -23,13 +23,15 @@
         <div class="bg-text">Vay Online</div>
         <div class="bg-text-2">Thu tục nhanh chóng - Tiện lợi</div>
     </div>
-    <label for="CMND">Client CMND:</label>
+    <div class="main-info">
+    <h1>Tra cứu thông tin vay</h1>
+    <label for="CMND">Nhập số CMND:</label>
     <input type="text" id="CMND">
-    <button onclick="getClient()">Get Client</button>
+    <button onclick="getClient()">Tra cứu</button>
     
-    <h1>Client Information</h1>
-    <ul>
-        <li><strong>ID:</strong> <span id="id"></span></li>
+    
+    <ul id="list-info">
+        <li style="display: none;"><strong>ID:</strong> <span id="id" ></span></li>
         <li><strong>Full Name:</strong> <span id="hoten"></span></li>
         <li><strong>CMND:</strong> <span id="cmnd"></span></li>
         <li><strong>Address:</strong> <span id="diachi"></span></li>
@@ -42,5 +44,7 @@
         <li><strong>Branch:</strong> <span id="chinhanh"></span></li>
         <li><strong>Loan Channel:</strong> <span id="kenhvay"></span></li>
     </ul>
+    
+</div>
 </body>
 </html>

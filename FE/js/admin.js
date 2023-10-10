@@ -344,7 +344,7 @@ $(document).ready(function() {
             method: "DELETE",
             success: function(response) {
                 alert(response);
-                getChinhanh();
+                getKenhvay();
             },
             error: function(xhr, status, error) {
                 console.log(error);
@@ -354,6 +354,63 @@ $(document).ready(function() {
     
     // Lấy danh sách khách hàng khi trang được tải
     getKenhvay();
+});
+$(document).ready(function() {
+  // Lấy danh sách  từ API
+  function getTygia() {
+      $.ajax({
+          url: "http://localhost:8080/tygia",
+          method: "GET",
+          dataType: "json",
+          success: function(response) {
+              var tygia = response;
+              var tygiaList = $("#tygia-list");
+              
+              tygiaList.empty();
+              
+              tygia.forEach(function( tygia) {
+                  var row = $("<tr>");
+                  row.append($("<td>").text( tygia.id));
+                  row.append($("<td>").text(tygia.name));
+                  row.append($("<td>").text(tygia.mua));
+                  row.append($("<td>").text(tygia.ban));
+                  var actionCell = $("<td>").addClass("btn-container");
+                  var deleteBtn = $("<button>").text("Xóa").data("tygia-id",  tygia.id);
+                  
+                  deleteBtn.click(function() {
+                      var tygiaId = $(this).data("tygia-id");
+                      deleteTygia(tygiaId);
+                  });
+                  
+                  actionCell.append(deleteBtn);
+                  row.append(actionCell);
+                  
+                 tygiaList.append(row);
+              });
+          },
+          error: function(xhr, status, error) {
+              console.log(error);
+          }
+      });
+  }
+  
+  // Xóa  từ API
+  function deleteTygia(tygiaId) {
+      $.ajax({
+          url: "http://localhost:8080/tygia/delete/" + tygiaId,
+          method: "DELETE",
+          success: function(response) {
+              alert(response);
+              getTygia();
+          },
+          error: function(xhr, status, error) {
+              console.log(error);
+          }
+      });
+  }
+  
+  // Lấy danh sách khách hàng khi trang được tải
+  getTygia();
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -534,6 +591,44 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   document.addEventListener('DOMContentLoaded', function() {
+    var addTygia = document.getElementById("add-tygia");
+    addTygia.addEventListener('click', function() {
+      var tygianame = document.getElementById('tygianame').value;
+      var tygiabuy = document.getElementById('tygiabuy').value;
+      var tygiasell = document.getElementById('tygiasell').value;
+      // Tạo một đối tượng JSON chứa dữ liệu nghề nghiệp
+      var tygiaData = {
+       name: tygianame,
+       mua:tygiabuy,
+       ban:tygiasell
+      };
+  
+      // Gửi yêu cầu HTTP POST đến API
+      fetch('http://localhost:8080/tygia/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(tygiaData)
+      })
+      .then(function(response) {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error('Thêm tỷ giá thất bại');
+        }
+      })
+      .then(function(data) {
+        console.log(data); // Log thông báo từ API (nghenghiep added successfully)
+        // Làm mới trang
+        location.reload(); // Tải lại trang
+      })
+      .catch(function(error) {
+        console.error(error); // Log lỗi nếu có
+      });
+    });
+  });
+  document.addEventListener('DOMContentLoaded', function() {
     // Gắn sự kiện click cho các nút
     var btn1 = document.getElementById('btn1');
     var btn2 = document.getElementById('btn2');
@@ -541,12 +636,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var btn4 = document.getElementById('btn4');
     var btn5 = document.getElementById('btn5');
     var btn6 = document.getElementById('btn6');
+    var btn7 = document.getElementById('btn7');
     var clientlst = document.getElementById('clientlist');
     var nghenghieplst=document.getElementById('nghenghieplist');
     var thunhaplst=document.getElementById('thunhaplist');
     var sanphamvaylst=document.getElementById('sanphamvaylist');
     var chinhanhlst= document.getElementById('chinhanhlist');
     var kenhvaylst=document.getElementById('kenhvaylist');
+    var tygialst=document.getElementById('tygialist');
     btn1.addEventListener('click', function() {
    
      clientlst.style.display = 'block';
@@ -555,6 +652,7 @@ document.addEventListener('DOMContentLoaded', function() {
     sanphamvaylst.style.display = 'none';
      chinhanhlst.style.display = 'none';
      kenhvaylst.style.display = 'none';
+     tygialst.style.display = 'none';
     });
   
     btn2.addEventListener('click', function() {
@@ -564,6 +662,7 @@ document.addEventListener('DOMContentLoaded', function() {
        sanphamvaylst.style.display = 'none';
         chinhanhlst.style.display = 'none';
         kenhvaylst.style.display = 'none';
+        tygialst.style.display = 'none';
     });
   
     btn3.addEventListener('click', function() {
@@ -574,6 +673,7 @@ document.addEventListener('DOMContentLoaded', function() {
      sanphamvaylst.style.display = 'none';
       chinhanhlst.style.display = 'none';
       kenhvaylst.style.display = 'none';
+      tygialst.style.display = 'none';
     });
   
     btn4.addEventListener('click', function() {
@@ -584,6 +684,7 @@ document.addEventListener('DOMContentLoaded', function() {
      sanphamvaylst.style.display = 'block';
       chinhanhlst.style.display = 'none';
       kenhvaylst.style.display = 'none';
+      tygialst.style.display = 'none';
     });
   
     btn5.addEventListener('click', function() {
@@ -594,6 +695,7 @@ document.addEventListener('DOMContentLoaded', function() {
      sanphamvaylst.style.display = 'none';
       chinhanhlst.style.display = 'block';
       kenhvaylst.style.display = 'none';
+      tygialst.style.display = 'none';
     });
   
     btn6.addEventListener('click', function() {
@@ -603,7 +705,17 @@ document.addEventListener('DOMContentLoaded', function() {
        sanphamvaylst.style.display = 'none';
         chinhanhlst.style.display = 'none';
         kenhvaylst.style.display = 'block';
+        tygialst.style.display = 'none';
     });
+    btn7.addEventListener('click', function() {
+      clientlst.style.display = 'none';
+      nghenghieplst.style.display = 'none';
+      thunhaplst.style.display = 'none';
+     sanphamvaylst.style.display = 'none';
+      chinhanhlst.style.display = 'none';
+      kenhvaylst.style.display = 'none';
+      tygialst.style.display = 'block';
+  });
   
     
   });

@@ -64,3 +64,48 @@
     margin-left: 8vw;
     color: white;
 }
+.bg-main{
+    /* background-color: red; */
+    display: block;
+    margin: auto;
+    width: 50%;
+    padding-left: 20vw;
+    padding-right: 20vw;
+    
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+}
+
+#tygia-table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  #tygia-table th, #tygia-table td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  #tygia-table th {
+    background-color: #f2f2f2;
+  }
+  
+  #tygia-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  #tygia-table tr:hover {
+    background-color: #ddd;
+  }
+  .title-tt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+  }
+  .tygia-title{
+    font-size: 3vw;
+  }
+  

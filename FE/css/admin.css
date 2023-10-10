@@ -49,6 +49,9 @@ h1{
 #thunhaplist{
     display: none;
 }
+#tygialist{
+    display: none;
+}
 .header{
     width: 95%;
     margin: auto;
