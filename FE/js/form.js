@@ -19,9 +19,10 @@ function addClient() {
     var quanhuyen = document.getElementById("quanhuyen");
 
     var tienvay = document.getElementById("tienvay").value;
+    var thoigian = document.getElementById("thoigian").value;
     var chinhanh = document.getElementById("chinhanh");
     var kenhvay = document.getElementById("kenhvay");
-    if (hoten === "" || cmnd === "" || diachi === "" || tel === "" || email === "" || tienvay === "") {
+    if (hoten === "" || cmnd === "" || diachi === "" || tel === "" || email === "" || tienvay === ""|| thoigian === "") {
         document.getElementById("error-message").textContent = "Vui lòng điền đầy đủ thông tin.";
         return;
     }
@@ -69,6 +70,7 @@ function addClient() {
         thunhap: selectedOption,
         sanphamchovay: selectedOption1,
         tienvay: tienvay,
+        thoigian: thoigian,
         chinhanh: selectedOption2,
         kenhvay: selectedOption3
     };

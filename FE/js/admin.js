@@ -23,6 +23,7 @@ $(document).ready(function() {
                     row.append($("<td>").text(client.thunhap));
                     row.append($("<td>").text(client.sanphamchovay));
                     row.append($("<td>").text(client.tienvay));
+                    row.append($("<td>").text(client.thoigian));
                     row.append($("<td>").text(client.chinhanh));
                     row.append($("<td>").text(client.kenhvay));
                     

@@ -29,16 +29,7 @@ import com.example.Chovay.Client;
 @CrossOrigin
 public class ClientController {
 	
-	  // Mã hóa API thành Base64
-    public String encodeAPI(String apiString) {
-        return Base64.getEncoder().encodeToString(apiString.getBytes());
-    }
-
-    // Giải mã Base64 thành chuỗi API ban đầu
-    public String decodeAPI(String encodedAPI) {
-        byte[] decodedBytes = Base64.getDecoder().decode(encodedAPI);
-        return new String(decodedBytes);
-    }
+	
     
 	@GetMapping("/clients")
 	public List<Client> getClients() {
@@ -55,7 +46,7 @@ public class ClientController {
 	        result = ps.executeQuery();
 	        
 	        while (result.next()) {
-	            Client client = new Client(0, null, null, null, null, null, null, null, null, 0, null, null);
+	            Client client = new Client(0, null, null, null, null, null, null, null, null, 0,0, null, null);
 	            client.setId(result.getInt("id"));
 	            client.setHoten(result.getString("hoten"));
 	            client.setCmnd(result.getString("cmnd"));
@@ -66,6 +57,7 @@ public class ClientController {
 	            client.setThunhap(result.getString("thunhap"));
 	            client.setSanphamchovay(result.getString("sanphamchovay"));
 	            client.setTienvay(result.getInt("tienvay"));
+	            client.setThoigian(result.getInt("thoigian"));
 	            client.setChinhanh(result.getString("chinhanh"));
 	            client.setKenhvay(result.getString("kenhvay"));
 	            
@@ -107,7 +99,7 @@ public Client getClient(@PathVariable String cmnd) {
 	Connection connection = null;
 	PreparedStatement ps = null;
 	ResultSet result = null;
-	Client client = new Client(0, cmnd,cmnd, cmnd, cmnd, cmnd, cmnd, cmnd, cmnd, 0, cmnd, cmnd);
+	Client client = new Client(0, cmnd,cmnd, cmnd, cmnd, cmnd, cmnd, cmnd, cmnd, 0,0, cmnd, cmnd);
 	try {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chovayonl", "root", "Endgame3112");
@@ -125,6 +117,7 @@ public Client getClient(@PathVariable String cmnd) {
 			client.setThunhap(result.getString("thunhap"));
 			client.setSanphamchovay(result.getString("sanphamchovay"));
 			client.setTienvay(result.getInt("tienvay"));
+			client.setThoigian(result.getInt("thoigian"));
 			client.setChinhanh(result.getString("chinhanh"));
 			client.setKenhvay(result.getString("kenhvay"));
 		}
@@ -212,7 +205,7 @@ public String addClient(@RequestBody Client client) {
         connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chovayonl", "root", "Endgame3112");
 
         // Use a PreparedStatement to insert the client data
-        ps = connection.prepareStatement("INSERT INTO clientvo (hoten, cmnd, diachi, tel, email, nghenghiep, thunhap, sanphamchovay, tienvay, chinhanh, kenhvay) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        ps = connection.prepareStatement("INSERT INTO clientvo (hoten, cmnd, diachi, tel, email, nghenghiep, thunhap, sanphamchovay, tienvay,thoigian, chinhanh, kenhvay) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         ps.setString(1, client.getHoten());
         ps.setString(2, client.getCmnd());
         ps.setString(3, client.getDiachi());
@@ -222,8 +215,9 @@ public String addClient(@RequestBody Client client) {
         ps.setString(7, client.getThunhap());
         ps.setString(8, client.getSanphamchovay());
         ps.setInt(9, client.getTienvay());
-        ps.setString(10, client.getChinhanh());
-        ps.setString(11, client.getKenhvay());
+        ps.setInt(10, client.getThoigian());
+        ps.setString(11, client.getChinhanh());
+        ps.setString(12, client.getKenhvay());
 
         result = ps.executeUpdate();
         ps.close();
