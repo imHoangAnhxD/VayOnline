@@ -144,3 +144,8 @@ input[type="text"] {
     padding-top: 2vw;
     padding-bottom: 2vw;
   }
+  #error-message{
+    color:red;
+    font-size: 2vw;
+    display: none;
+  }
