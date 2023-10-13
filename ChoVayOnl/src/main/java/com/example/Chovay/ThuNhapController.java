@@ -93,9 +93,9 @@ public class ThuNhapController {
             int rowsAffected = ps.executeUpdate();
 
             if (rowsAffected > 0) {
-                return new ResponseEntity<>("Thunhap added successfully", HttpStatus.OK);
+                return new ResponseEntity<>(" added successfully", HttpStatus.OK);
             } else {
-                return new ResponseEntity<>("Failed to add thunhap", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("Failed to add ", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -129,9 +129,9 @@ public class ThuNhapController {
             int rowsAffected = ps.executeUpdate();
 
             if (rowsAffected > 0) {
-                return new ResponseEntity<>("Thunhap deleted successfully", HttpStatus.OK);
+                return new ResponseEntity<>(" deleted successfully", HttpStatus.OK);
             } else {
-                return new ResponseEntity<>("No thunhap found with ID: " + id, HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>("Not found with ID: " + id, HttpStatus.NOT_FOUND);
             }
         } catch (Exception e) {
             e.printStackTrace();

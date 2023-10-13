@@ -2,9 +2,9 @@
 <html>
 <head>
     <title>Client Information</title>
-    <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="css/loaninfo.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="js/result.js"></script>
+    <script src="js/loaninfo.js"></script>
 </head>
 <body>
     <div class="contain-header">
@@ -23,6 +23,31 @@
         <div class="bg-text">Vay Online</div>
         <div class="bg-text-2">Thu tục nhanh chóng - Tiện lợi</div>
     </div>
-     <h1>Thông tin</h1>
+     
+     <div class="main-info">
+        <h1>Tính tiền gốc và lãi dự kiến</h1>
+     <label for="loanAmount">Số tiền vay:</label>
+     <input type="number" id="loanAmount" min="1"><br><br>
+ 
+     <label for="loanTerm">Số tháng vay:</label>
+     <input type="number" id="loanTerm" min="1"><br><br>
+ 
+     <button onclick="calculate()">Tính toán</button><br><br>
+    <div id="money-tb" style="display: none;">
+     <table border="1" >
+         <thead>
+             <tr>
+                 <th>Tháng</th>
+                 <th>Tiền gốc</th>
+                 <th>Tiền lãi</th>
+                 <th>Tổng tiền trả</th>
+             </tr>
+         </thead>
+         <tbody id="resultTable"></tbody>
+     </table>
+    </div>
+</div>
+ 
+     
 </body>
 </html>

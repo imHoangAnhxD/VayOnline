@@ -245,9 +245,9 @@ public ResponseEntity<String> deleteClient(@PathVariable int id) {
         int rowsAffected = ps.executeUpdate();
         
         if (rowsAffected > 0) {
-            return new ResponseEntity<>("Client deleted successfully", HttpStatus.OK);
+            return new ResponseEntity<>("deleted successfully", HttpStatus.OK);
         } else {
-            return new ResponseEntity<>("No client found with ID: " + id, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Not found with ID: " + id, HttpStatus.NOT_FOUND);
         }
     } catch (Exception e) {
         e.printStackTrace();
