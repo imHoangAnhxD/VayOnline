@@ -100,10 +100,7 @@ function normalizeName() {
 
    
 
-    // Chuyển đổi chữ cái đầu tiên của mỗi từ thành chữ hoa
-    name = name.toLowerCase().replace(/\b\w/g, function(l) {
-        return l.toUpperCase();
-    });
+   
 
     // Xóa các khoảng trắng thừa giữa các từ
     name = name.replace(/\s+/g, " ");

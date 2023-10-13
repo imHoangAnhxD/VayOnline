@@ -6,6 +6,9 @@ table {
 th, td {
     padding: 8px;
     text-align: left;
+   
+}
+tr{
     border-bottom: 1px solid #ddd;
 }
 h1{
@@ -16,6 +19,9 @@ h1{
     display: flex;
     
     align-items: center;
+}
+#clientlist  .btn-container{
+    margin-top:1.3vw;
 }
 .btn-container button {
     margin-right: 5px;
