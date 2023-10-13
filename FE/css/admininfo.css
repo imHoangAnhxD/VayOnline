@@ -1,0 +1,118 @@
+.header{
+    width: 95%;
+    margin: auto;
+    margin-top:1vw;
+    margin-bottom: 1vw;
+    background-color: white;
+    display: flex;
+    border: solid 1px gray;
+    
+    border-radius:10px;
+    
+   
+}
+.contain-header{
+  padding: 0.1vw;
+    width: 100%;
+    background-image: url(../img/Grandsales_comp.jpg);
+    background-size: cover;
+    padding-bottom: 27vw;
+   
+}
+.logo img{
+    width: 10vw;
+    margin-left: 1vw;
+    margin-top: 0.6vw;
+
+}
+.headertext{
+    color: #00524e;
+    font-size: 1.5vw;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 1.5vw;
+    font-weight: 800;
+    margin-left: 2vw;
+}
+.tabtext{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 1.7vw;
+    font-weight: bold;
+    font-size:1vw;
+   
+    
+}
+.tabtext:hover{
+   cursor: pointer;
+   opacity: 0.9;
+   
+   background-color:whitesmoke;
+    
+}
+.bg-text{
+    font-size: 4vw;
+    font-weight: bold;
+    position: absolute;
+    margin-top: 4vw;
+    margin-left: 8vw;
+    color: white;
+}
+.bg-text-2{
+    font-size: 2vw;
+    font-weight: bold;
+    position: absolute;
+    margin-top: 10vw;
+    margin-left: 8vw;
+    color: white;
+}
+/* Định dạng input và button */
+input[type="text"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+ 
+  .main-info{
+    background-color:#f7f9fb;
+    display: block;
+    margin: auto;
+    width: 50%;
+    padding-left: 20vw;
+    padding-right: 20vw;
+    border-radius:1vw;
+    margin-top: 2vw;
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+  }
+  #list-info {
+    list-style-type: none;
+    padding: 0;
+}
+
+#list-info li {
+    margin-bottom: 10px;
+}
+
+#list-info li strong {
+    font-weight: bold;
+    margin-right: 1vw;
+}
+
+#list-info li span {
+    font-weight: normal;
+}
+  
