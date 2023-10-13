@@ -1,0 +1,32 @@
+.footer {
+    background-color: #f7f9fb;
+    color: black;
+    padding: 2vw 0;
+    text-align: center;
+    margin-top: 5vw;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo img {
+    max-width: 10vw;
+    margin-left: 3vw;
+}
+
+.footer-info p {
+    margin: 1vw 0;
+}
+
+.social-links a {
+    margin-top: 1vw;
+    margin: 0 2vw;
+    color: black;
+    
+}
+.social-links img {
+    width: 3vw;
+}
