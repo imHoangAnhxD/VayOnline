@@ -377,13 +377,18 @@ $(document).ready(function() {
                   row.append($("<td>").text(tygia.ban));
                   var actionCell = $("<td>").addClass("btn-container");
                   var deleteBtn = $("<button>").text("Xóa").data("tygia-id",  tygia.id);
+                  var UpdateBtn = $("<button>").text("Sửa").data("tygia-id",  tygia.id);
                   
                   deleteBtn.click(function() {
                       var tygiaId = $(this).data("tygia-id");
                       deleteTygia(tygiaId);
                   });
-                  
+                  UpdateBtn.click(function() {
+                    var tygiaId = $(this).data("tygia-id");
+                    window.location.href = "edit-tygia.html?id=" + tygiaId; // Chuyển đến trang chỉnh sửa
+                });
                   actionCell.append(deleteBtn);
+                  actionCell.append(UpdateBtn);
                   row.append(actionCell);
                   
                  tygiaList.append(row);
@@ -409,6 +414,7 @@ $(document).ready(function() {
           }
       });
   }
+  
   
   // Lấy danh sách khách hàng khi trang được tải
   getTygia();

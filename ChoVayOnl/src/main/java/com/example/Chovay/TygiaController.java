@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -152,4 +153,92 @@ public class TygiaController {
             }
         }
     }
+    @GetMapping("/tygia/{id}")
+    public ResponseEntity<Tygia> getTygiaById(@PathVariable long id) {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet result = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chovayonl", "root", "Endgame3112");
+
+            ps = connection.prepareStatement("SELECT * FROM tygia WHERE id = ?");
+            ps.setLong(1, id);
+            result = ps.executeQuery();
+
+            if (result.next()) {
+                int tygiaId = result.getInt("id");
+                String name = result.getString("name");
+                String mua = result.getString("mua");
+                String ban = result.getString("ban");
+                Tygia tygia = new Tygia();
+                tygia.setId(tygiaId);
+                tygia.setName(name);
+                tygia.setMua(mua);
+                tygia.setBan(ban);
+
+                return new ResponseEntity<>(tygia, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } finally {
+            try {
+                if (result != null) {
+                    result.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @PutMapping("/tygia/update/{id}")
+    public ResponseEntity<String> updateTygia(@PathVariable long id, @RequestBody Tygia tygia) {
+        Connection connection = null;
+        PreparedStatement ps = null;
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chovayonl", "root", "Endgame3112");
+
+            ps = connection.prepareStatement("UPDATE tygia SET name=?, mua=?, ban=? WHERE id=?");
+            ps.setString(1, tygia.getName());
+            ps.setString(2, tygia.getMua());
+            ps.setString(3, tygia.getBan());
+            ps.setLong(4, id);
+
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                return new ResponseEntity<>(" Cập nhật tỷ giá mới thành công", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Not found with ID: " + id, HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(e.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+        } finally {
+            try {
+                if (ps != null) {
+                    ps.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
