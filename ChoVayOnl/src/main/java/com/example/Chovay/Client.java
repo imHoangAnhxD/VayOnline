@@ -14,7 +14,8 @@ public class Client {
 	private int thoigian;
 	private String chinhanh;
 	private String kenhvay;
-	public Client(int id, String hoten, String cmnd, String diachi,String tel,String email,String nghenghiep,String thunhap,String sanphamchovay,int tienvay,int thoigian,String chinhanh, String kenhvay) {
+	private String status;
+	public Client(int id, String hoten, String cmnd, String diachi,String tel,String email,String nghenghiep,String thunhap,String sanphamchovay,int tienvay,int thoigian,String chinhanh, String kenhvay,String status) {
 		this.id=id;
 		this.hoten=hoten;
 		this.cmnd=cmnd;
@@ -28,6 +29,7 @@ public class Client {
 		this.thoigian=thoigian;
 		this.chinhanh=chinhanh;
 		this.kenhvay=kenhvay;
+		this.setStatus(status);
 	}
 	public int getId() {
 		return id;
@@ -106,6 +108,12 @@ public class Client {
 	}
 	public void setKenhvay(String kenhvay) {
 		this.kenhvay = kenhvay;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }
 	

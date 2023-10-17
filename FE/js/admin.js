@@ -26,15 +26,21 @@ $(document).ready(function() {
                     row.append($("<td>").text(client.thoigian));
                     row.append($("<td>").text(client.chinhanh));
                     row.append($("<td>").text(client.kenhvay));
+                    row.append($("<td>").text(client.status));
                     
                     var actionCell = $("<td>").addClass("btn-container");
+                    var UpdateBtn = $("<button>").text("Sửa").data("client-id", client.id);
                     var deleteBtn = $("<button>").text("Xóa").data("client-id", client.id);
                     
                     deleteBtn.click(function() {
                         var clientId = $(this).data("client-id");
                         deleteClient(clientId);
                     });
-                    
+                    UpdateBtn.click(function() {
+                      var clientId = $(this).data("client-id");
+                      window.location.href = "edit-client.html?id=" + clientId; // Chuyển đến trang chỉnh sửa
+                  });
+                    actionCell.append(UpdateBtn);
                     actionCell.append(deleteBtn);
                     row.append(actionCell);
                     

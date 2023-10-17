@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,7 +47,7 @@ public class ClientController {
 	        result = ps.executeQuery();
 	        
 	        while (result.next()) {
-	            Client client = new Client(0, null, null, null, null, null, null, null, null, 0,0, null, null);
+	            Client client = new Client(0, null, null, null, null, null, null, null, null, 0,0, null, null,null);
 	            client.setId(result.getInt("id"));
 	            client.setHoten(result.getString("hoten"));
 	            client.setCmnd(result.getString("cmnd"));
@@ -60,7 +61,7 @@ public class ClientController {
 	            client.setThoigian(result.getInt("thoigian"));
 	            client.setChinhanh(result.getString("chinhanh"));
 	            client.setKenhvay(result.getString("kenhvay"));
-	            
+	            client.setStatus(result.getString("status"));
 	            clients.add(client);
 	        }
 	    } catch (Exception e) {
@@ -93,13 +94,13 @@ public class ClientController {
 	    return clients;
 	}
 
-@GetMapping("/client/{cmnd}")
+@GetMapping("/clientcmnd/{cmnd}")
 public Client getClient(@PathVariable String cmnd) {
 	
 	Connection connection = null;
 	PreparedStatement ps = null;
 	ResultSet result = null;
-	Client client = new Client(0, cmnd,cmnd, cmnd, cmnd, cmnd, cmnd, cmnd, cmnd, 0,0, cmnd, cmnd);
+	Client client = new Client(0, cmnd,cmnd, cmnd, cmnd, cmnd, cmnd, cmnd, cmnd, 0,0, cmnd, cmnd,cmnd);
 	try {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chovayonl", "root", "Endgame3112");
@@ -120,6 +121,7 @@ public Client getClient(@PathVariable String cmnd) {
 			client.setThoigian(result.getInt("thoigian"));
 			client.setChinhanh(result.getString("chinhanh"));
 			client.setKenhvay(result.getString("kenhvay"));
+			client.setStatus(result.getString("status"));
 		}
 	} // End of try block
 	catch (Exception e) {
@@ -128,71 +130,85 @@ public Client getClient(@PathVariable String cmnd) {
 	
 	return client;
 }
-//@PostMapping("/client/save/{id}")
-//public String addClient(@RequestBody Client client, @PathVariable String id) {
-//    Connection connection = null;
-//    PreparedStatement ps = null;
-//    int result = 0;
-//    
-//    try {
-//        Class.forName("com.mysql.cj.jdbc.Driver");
-//        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chovayonl", "root", "Endgame3112");
-//
-//        
-//        PreparedStatement checkStatement = connection.prepareStatement("SELECT COUNT(*) FROM clientvo WHERE id = ?");
-//        checkStatement.setInt(1, Integer.parseInt(id));
-//        ResultSet checkResult = checkStatement.executeQuery();
-//        checkResult.next();
-//        int count = checkResult.getInt(1);
-//        checkResult.close();
-//        checkStatement.close();
-//
-//       
-//        if (count > 0) {
-//            ps = connection.prepareStatement("UPDATE clientvo SET hoten = ?, cmnd = ?, diachi = ?, tel = ?,email=?,nghenghiep=?,thunhap=?,sanphamchovay=?,tienvay=?,chinhanh=?,kenhvay=? WHERE id = ?");
-//            ps.setString(1, client.getHoten());
-//            ps.setString(2, client.getCmnd());
-//            ps.setString(3, client.getDiachi());
-//            ps.setString(4, client.getTel());
-//            ps.setString(5, client.getEmail());
-//            ps.setString(6, client.getNghenghiep());
-//            ps.setString(7, client.getThunhap());
-//            ps.setString(8, client.getSanphamchovay());
-//            ps.setInt(9,client.getTienvay());
-//            ps.setString(10, client.getChinhanh());
-//            ps.setString(11, client.getKenhvay());
-//            ps.setInt(12, Integer.parseInt(id));
-//        }
-//        // 
-//        else {
-//            ps = connection.prepareStatement("INSERT INTO clientvo VALUES (?, ?, ?, ?, ?,?,?,?,?,?,?,?)");
-//            ps.setInt(1, Integer.valueOf(client.getId()));
-//            ps.setString(2, client.getHoten());
-//            ps.setString(3, client.getCmnd());
-//            ps.setString(4, client.getDiachi());
-//            ps.setString(5, client.getTel());
-//            ps.setString(6, client.getEmail());
-//            ps.setString(7, client.getNghenghiep());
-//            ps.setString(8, client.getThunhap());
-//            ps.setString(9, client.getSanphamchovay());
-//            ps.setInt(	10,client.getTienvay());
-//            ps.setString(11, client.getChinhanh());
-//            ps.setString(12, client.getKenhvay());
-//        }
-//        
-//        result = ps.executeUpdate();
-//        ps.close();
-//        connection.close();
-//        // Redirect the response to success page
-//        return "Add Successfully";
-//    } // End of try block
-//    catch (Exception e) {
-//        e.printStackTrace();
-//        return e.toString(); 
-//    }
-//    
-//}
 
+@GetMapping("/client/{id}")
+public Client getClientbyID(@PathVariable int id) {
+	
+	Connection connection = null;
+	PreparedStatement ps = null;
+	ResultSet result = null;
+	Client clientid = new Client(id, null, null, null, null, null, null, null, null, id, id, null, null, null);
+	try {
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chovayonl", "root", "Endgame3112");
+		ps = connection.prepareStatement("select * from clientvo where id = ?");
+		 ps.setInt(1, clientid.getId());
+		result = ps.executeQuery();
+		while (result.next()) {
+			clientid.setId(result.getInt("id"));
+			clientid.setHoten(result.getString("hoten"));
+			clientid.setCmnd(result.getString("cmnd"));
+			clientid.setDiachi(result.getString("diachi"));
+			clientid.setTel(result.getString("tel"));
+			clientid.setEmail(result.getString("email"));
+			clientid.setNghenghiep(result.getString("nghenghiep"));
+			clientid.setThunhap(result.getString("thunhap"));
+			clientid.setSanphamchovay(result.getString("sanphamchovay"));
+			clientid.setTienvay(result.getInt("tienvay"));
+			clientid.setThoigian(result.getInt("thoigian"));
+			clientid.setChinhanh(result.getString("chinhanh"));
+			clientid.setKenhvay(result.getString("kenhvay"));
+			clientid.setStatus(result.getString("status"));
+		}
+	} // End of try block
+	catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+	return clientid;
+}
+@PutMapping("/client/update/{id}")
+public Client updateClientByID(@PathVariable int id, @RequestBody Client updatedClient) {
+
+    Connection connection = null;
+    PreparedStatement ps = null;
+
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chovayonl", "root", "Endgame3112");
+        ps = connection.prepareStatement("UPDATE clientvo SET hoten=?, cmnd=?, diachi=?, tel=?, email=?, nghenghiep=?, thunhap=?, sanphamchovay=?, tienvay=?, thoigian=?, chinhanh=?, kenhvay=?, status=? WHERE id=?");
+
+        ps.setString(1, updatedClient.getHoten());
+        ps.setString(2, updatedClient.getCmnd());
+        ps.setString(3, updatedClient.getDiachi());
+        ps.setString(4, updatedClient.getTel());
+        ps.setString(5, updatedClient.getEmail());
+        ps.setString(6, updatedClient.getNghenghiep());
+        ps.setString(7, updatedClient.getThunhap());
+        ps.setString(8, updatedClient.getSanphamchovay());
+        ps.setInt(9, updatedClient.getTienvay());
+        ps.setInt(10, updatedClient.getThoigian());
+        ps.setString(11, updatedClient.getChinhanh());
+        ps.setString(12, updatedClient.getKenhvay());
+        ps.setString(13, updatedClient.getStatus());
+        ps.setInt(14, id);
+
+        int rowsAffected = ps.executeUpdate();
+
+        if (rowsAffected > 0) {
+            updatedClient.setId(id);
+            return updatedClient;
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        // Close connection and resources
+        // Add code here to close connection, ps, and result set
+    }
+
+    return null; // Return null if update fails
+}
 
 @PostMapping("/client/save")
 public String addClient(@RequestBody Client client) {
@@ -205,7 +221,7 @@ public String addClient(@RequestBody Client client) {
         connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chovayonl", "root", "Endgame3112");
 
         // Use a PreparedStatement to insert the client data
-        ps = connection.prepareStatement("INSERT INTO clientvo (hoten, cmnd, diachi, tel, email, nghenghiep, thunhap, sanphamchovay, tienvay,thoigian, chinhanh, kenhvay) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        ps = connection.prepareStatement("INSERT INTO clientvo (hoten, cmnd, diachi, tel, email, nghenghiep, thunhap, sanphamchovay, tienvay,thoigian, chinhanh, kenhvay,status) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)");
         ps.setString(1, client.getHoten());
         ps.setString(2, client.getCmnd());
         ps.setString(3, client.getDiachi());
@@ -218,7 +234,7 @@ public String addClient(@RequestBody Client client) {
         ps.setInt(10, client.getThoigian());
         ps.setString(11, client.getChinhanh());
         ps.setString(12, client.getKenhvay());
-
+        ps.setString(13, client.getStatus());
         result = ps.executeUpdate();
         ps.close();
         connection.close();

@@ -12,7 +12,7 @@ function getClient() {
         }
     };
     
-    xhr.open("GET", "http://localhost:8080/client/" + id, true);
+    xhr.open("GET", "http://localhost:8080/clientcmnd/" + id, true);
     xhr.send();
 }
 
@@ -34,8 +34,8 @@ function updateClientInfo(client) {
     document.getElementById("thoigian").textContent = client.thoigian;
     document.getElementById("chinhanh").textContent = client.chinhanh;
     document.getElementById("kenhvay").textContent = client.kenhvay;
-    console.log("á",document.getElementById("hoten").textContent);
-    console.log("á",document.getElementById("cmnd").textContent);
+    document.getElementById("status").textContent = client.status;
+  
 
    if(document.getElementById("hoten").textContent==document.getElementById("cmnd").textContent){
     document.getElementById("list-info").style.display='none';
