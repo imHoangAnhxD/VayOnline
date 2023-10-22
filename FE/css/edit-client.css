@@ -1,7 +1,7 @@
 #edit-client {
-    text-align: center; /* Căn giữa nội dung trong div */
-    max-width: 600px; /* Giới hạn chiều rộng của div */
-    margin: 0 auto; /* Căn giữa div trong trang */
+    text-align: center; 
+    max-width: 600px; 
+    margin: 0 auto; 
 }
 
 .title-input {
