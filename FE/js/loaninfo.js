@@ -4,7 +4,7 @@ function calculate() {
     var loanAmount = parseFloat(document.getElementById('loanAmount').value);
     var loanTerm = parseInt(document.getElementById('loanTerm').value);
 
-    var monthlyInterest = 0.03; // Lãi suất hàng năm (3%)
+    var monthlyInterest = 0.03; // Lãi suất hàng tháng (3%)
     var monthlyPayment = loanAmount / loanTerm;
 
     var resultTable = document.getElementById('resultTable');
