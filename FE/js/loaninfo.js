@@ -11,9 +11,9 @@ function calculate() {
     resultTable.innerHTML = '';
     
     for (var i = 1; i <= loanTerm; i++) {
-        var interest = loanAmount * monthlyInterest;
-        var principal = monthlyPayment - interest;
-        loanAmount -= principal;
+        var interest = loanAmount * monthlyInterest; //tính lãi cho tháng hiện tại bằng cách nhân số tiền còn lại với tỷ lệ lãi hàng tháng.
+        var principal = monthlyPayment - interest; //tính gốc cho tháng hiện tại bằng cách trừ lãi từ khoản trả hàng tháng.
+        loanAmount -= principal; //Dòng này giảm số tiền còn lại của khoản vay đi số tiền gốc đã trả trong tháng hiện tại.
 
         var row = document.createElement('tr');
         row.innerHTML = '<td>' + i + '</td>' +

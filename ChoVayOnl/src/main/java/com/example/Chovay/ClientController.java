@@ -239,7 +239,7 @@ public String addClient(@RequestBody Client client) {
         ps.close();
         connection.close();
         // Redirect the response to success page
-        return "Add Successfully";
+        return "Thêm thành công";
     } catch (Exception e) {
         e.printStackTrace();
         return e.toString(); 
@@ -261,7 +261,7 @@ public ResponseEntity<String> deleteClient(@PathVariable int id) {
         int rowsAffected = ps.executeUpdate();
         
         if (rowsAffected > 0) {
-            return new ResponseEntity<>("deleted successfully", HttpStatus.OK);
+            return new ResponseEntity<>("Xóa thông tin thành công", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Not found with ID: " + id, HttpStatus.NOT_FOUND);
         }

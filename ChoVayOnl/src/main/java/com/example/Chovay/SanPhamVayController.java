@@ -93,9 +93,9 @@ public class SanPhamVayController {
             int rowsAffected = ps.executeUpdate();
 
             if (rowsAffected > 0) {
-                return new ResponseEntity<>(" added successfully", HttpStatus.OK);
+                return new ResponseEntity<>(" Thêm thành công", HttpStatus.OK);
             } else {
-                return new ResponseEntity<>("Failed to add", HttpStatus.INTERNAL_SERVER_ERROR);
+                return new ResponseEntity<>("Không thể thêm", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -129,7 +129,7 @@ public class SanPhamVayController {
             int rowsAffected = ps.executeUpdate();
 
             if (rowsAffected > 0) {
-                return new ResponseEntity<>(" deleted successfully", HttpStatus.OK);
+                return new ResponseEntity<>(" Xóa thành công", HttpStatus.OK);
             } else {
                 return new ResponseEntity<>("Not found with ID: " + id, HttpStatus.NOT_FOUND);
             }
