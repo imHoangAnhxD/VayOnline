@@ -10,6 +10,8 @@ function calculate() {
     var resultTable = document.getElementById('resultTable');
     resultTable.innerHTML = '';
 
+    var totalPayment = 0;
+
     for (var i = 1; i <= loanTerm; i++) {
         var interest = loanAmount * monthlyInterest; // Tính lãi cho tháng hiện tại bằng cách nhân số tiền còn lại với tỷ lệ lãi hàng tháng.
         var principal = monthlyPayment - interest; // Tính gốc cho tháng hiện tại bằng cách trừ lãi từ khoản trả hàng tháng.
@@ -21,5 +23,13 @@ function calculate() {
                         '<td>' + interest.toFixed(2) + '</td>' +
                         '<td>' + monthlyPayment.toFixed(2) + '</td>';
         resultTable.appendChild(row);
+
+        totalPayment += monthlyPayment;
     }
+
+    // hàng ghi tổng tiền phải trả 
+    var totalRow = document.createElement('tr');
+    totalRow.innerHTML = '<td colspan="3"><strong>Tổng cộng</strong></td>' +
+                         '<td><strong>' + totalPayment.toFixed(2) + '</strong></td>';
+    resultTable.appendChild(totalRow);
 }
